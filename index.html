@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deutsch mit Asmaa</title>
+  <meta name="description" content="Frau Asmaa | معلمة اللغة الألمانية - رحلتك لتعلُّم اللغة الألمانية تبدأ من هنا!">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --beige: #f5ecdd;
+      --beige-dark: #e8d9bf;
+      --red: #8b1a1a;
+      --red-dark: #6b1212;
+      --white: #ffffff;
+      --text: #3a2a1f;
+      --muted: #6e5a4a;
+      --whatsapp: #25d366;
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Cairo", "Segoe UI", Tahoma, sans-serif;
+      background: var(--beige);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(160deg, var(--red) 0%, var(--red-dark) 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 64px 0 80px;
+      border-radius: 0 0 36px 36px;
+    }
+
+    .brand {
+      direction: ltr;
+      font-size: clamp(2rem, 7vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: 0.5px;
+    }
+
+    .brand span {
+      display: block;
+      font-size: 0.45em;
+      font-weight: 600;
+      color: var(--beige-dark);
+      margin-top: 8px;
+    }
+
+    .teacher {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 6px 20px;
+      border: 1.5px solid rgba(255, 255, 255, 0.5);
+      border-radius: 999px;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .teacher bdi { direction: ltr; }
+
+    .tagline {
+      margin-top: 20px;
+      font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+      font-weight: 700;
+      color: var(--beige);
+    }
+
+    .levels {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .level {
+      direction: ltr;
+      background: var(--white);
+      color: var(--red);
+      font-weight: 800;
+      font-size: 1.4rem;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Sections */
+    section { padding: 56px 0 0; }
+
+    h2 {
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      color: var(--red);
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    h2::after {
+      content: "";
+      display: block;
+      width: 56px;
+      height: 4px;
+      background: var(--red);
+      border-radius: 4px;
+      margin: 10px auto 0;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      list-style: none;
+    }
+
+    @media (min-width: 640px) {
+      .services { grid-template-columns: 1fr 1fr; }
+    }
+
+    .services li {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      border-right: 5px solid var(--red);
+      box-shadow: 0 4px 14px rgba(107, 18, 18, 0.07);
+      font-size: 1.08rem;
+      font-weight: 600;
+    }
+
+    .services li bdi {
+      direction: ltr;
+      color: var(--red);
+      font-weight: 800;
+    }
+
+    /* Contact */
+    .contact {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 36px 22px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(107, 18, 18, 0.08);
+    }
+
+    .contact p {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .phone {
+      display: block;
+      direction: ltr;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--red);
+      margin: 20px 0 16px;
+      text-decoration: none;
+    }
+
+    .wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--whatsapp);
+      color: var(--white);
+      font-family: inherit;
+      font-size: 1.15rem;
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 6px 16px rgba(37, 211, 102, 0.35);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .wa-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(37, 211, 102, 0.4);
+    }
+
+    .wa-btn svg { width: 24px; height: 24px; fill: currentColor; }
+
+    .wa-note {
+      margin-top: 14px !important;
+      font-size: 0.95rem !important;
+    }
+
+    /* Contact form */
+    .form-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px 22px;
+      box-shadow: 0 6px 20px rgba(107, 18, 18, 0.08);
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .field { margin-bottom: 18px; }
+
+    .field label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .field label .req { color: var(--red); }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      font-family: inherit;
+      font-size: 1rem;
+      color: var(--text);
+      background: var(--beige);
+      border: 1.5px solid var(--beige-dark);
+      border-radius: 12px;
+      padding: 12px 14px;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .field input[type="tel"] { direction: ltr; text-align: right; }
+
+    .field textarea { min-height: 130px; resize: vertical; }
+
+    .field input:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--red);
+      background: var(--white);
+    }
+
+    .submit-btn {
+      width: 100%;
+      font-family: inherit;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      background: var(--red);
+      border: none;
+      border-radius: 999px;
+      padding: 14px;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .submit-btn:hover { background: var(--red-dark); }
+    .submit-btn:disabled { opacity: 0.6; cursor: wait; }
+
+    .form-status {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .form-status.success { background: #e7f6ec; color: #1e6b3a; }
+    .form-status.error { background: #fbe9e9; color: var(--red); }
+
+    footer {
+      text-align: center;
+      padding: 48px 0 32px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    footer bdi { direction: ltr; }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="container">
+      <h1 class="brand">Deutsch mit Asmaa<span>Abd ElHamid</span></h1>
+      <div class="teacher"><bdi>Frau Asmaa</bdi> | معلمة اللغة الألمانية</div>
+      <p class="tagline">رحلتك لتعلُّم اللغة الألمانية تبدأ من هنا!</p>
+      <div class="levels" aria-label="المستويات">
+        <div class="level">A1</div>
+        <div class="level">A2</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2>خدماتنا التعليمية</h2>
+      <ul class="services">
+        <li>دروس ألماني لجميع الصفوف والمراحل الدراسية.</li>
+        <li>للمدارس الحكومية والخاصة والدولية.</li>
+        <li>كورسات للمبتدئين <bdi>A1</bdi> و<bdi>A2</bdi>.</li>
+        <li>وسائل تعليمية متنوعة وملخصات وأسئلة وتدريبات للتقوية.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="contact">
+        <h2>استفسري عن التفاصيل</h2>
+        <p>لمعرفة الأسعار والمواعيد والعنوان، تواصلي معنا عبر واتساب.</p>
+        <a class="phone" href="tel:01212234806">01212234806</a>
+        <a class="wa-btn" href="https://wa.me/201212234806" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.04 21.5h-.01a9.43 9.43 0 0 1-4.8-1.32l-.35-.2-3.57.93.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.02c0-5.2 4.24-9.44 9.45-9.44 2.52 0 4.89.99 6.67 2.77a9.37 9.37 0 0 1 2.76 6.68c0 5.2-4.24 9.44-9.44 9.44zm8.04-17.48A11.3 11.3 0 0 0 12.04.7C5.77.7.67 5.8.67 12.06c0 2 .52 3.96 1.52 5.68L.57 23.3l5.7-1.5a11.34 11.34 0 0 0 5.77 1.47h.01c6.26 0 11.36-5.1 11.37-11.36 0-3.04-1.18-5.89-3.34-8.04z"/></svg>
+          واتساب
+        </a>
+        <p class="wa-note">زر مباشر لبدء المحادثة وإرسال استفسارك.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>تواصل معنا</h2>
+      <div class="form-card">
+        <form id="contact-form" novalidate>
+          <div class="field">
+            <label for="name">الاسم <span class="req">*</span></label>
+            <input id="name" name="name" type="text" autocomplete="name" maxlength="100" required>
+          </div>
+          <div class="field">
+            <label for="phone">الموبايل <span class="req">*</span></label>
+            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel"
+                   pattern="\+?[0-9 ]{8,20}" maxlength="20" required>
+          </div>
+          <div class="field">
+            <label for="message">الرسالة <span class="req">*</span></label>
+            <textarea id="message" name="message" maxlength="2000" required></textarea>
+          </div>
+          <button class="submit-btn" type="submit">إرسال</button>
+          <div id="form-status" class="form-status" role="status" hidden></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <bdi>Deutsch mit Asmaa Abd ElHamid</bdi>
+  </footer>
+
+  <script>
+    // Supabase settings: paste your Project URL and publishable key here.
+    // Only the PUBLISHABLE key (sb_publishable_...) belongs in this file - never the secret key.
+    const SUPABASE_URL = "PASTE_PROJECT_URL_HERE";            // e.g. https://abcdefgh.supabase.co
+    const SUPABASE_PUBLISHABLE_KEY = "PASTE_PUBLISHABLE_KEY_HERE";
+
+    // Web3Forms: emails every message to the address the access key was created with.
+    // The access key is safe to keep in the page (it can only send to that address).
+    const WEB3FORMS_ACCESS_KEY = "PASTE_WEB3FORMS_ACCESS_KEY_HERE";
+
+    const form = document.getElementById("contact-form");
+    const statusBox = document.getElementById("form-status");
+    const submitBtn = form.querySelector(".submit-btn");
+
+    async function saveToSupabase(data) {
+      const response = await fetch(SUPABASE_URL + "/rest/v1/messages", {
+        method: "POST",
+        headers: {
+          "apikey": SUPABASE_PUBLISHABLE_KEY,
+          "Content-Type": "application/json",
+          // Insert only - the table policy does not allow reading rows back.
+          "Prefer": "return=minimal",
+        },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) {
+        throw new Error("Supabase: " + await response.text());
+      }
+    }
+
+    async function sendEmail(data) {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: "رسالة جديدة من صفحة Deutsch mit Asmaa",
+          from_name: "Deutsch mit Asmaa",
+          "الاسم": data.name,
+          "الموبايل": data.phone,
+          "الرسالة": data.message,
+        }),
+      });
+      const result = await response.json();
+      if (!result.success) {
+        throw new Error("Web3Forms: " + result.message);
+      }
+    }
+
+    function showStatus(text, type) {
+      statusBox.textContent = text;
+      statusBox.className = "form-status " + type;
+      statusBox.hidden = false;
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const data = {
+        name: form.name.value.trim(),
+        phone: form.phone.value.trim(),
+        message: form.message.value.trim(),
+      };
+
+      if (!data.name || !data.phone || !data.message) {
+        showStatus("من فضلك املي كل الخانات.", "error");
+        return;
+      }
+      if (!form.phone.checkValidity()) {
+        showStatus("من فضلك اكتبي رقم موبايل صحيح.", "error");
+        form.phone.focus();
+        return;
+      }
+
+      submitBtn.disabled = true;
+      statusBox.hidden = true;
+
+      // Save and email in parallel; the message has arrived if at least one succeeds.
+      const results = await Promise.allSettled([saveToSupabase(data), sendEmail(data)]);
+      results
+        .filter((r) => r.status === "rejected")
+        .forEach((r) => console.error("Contact form:", r.reason));
+
+      if (results.some((r) => r.status === "fulfilled")) {
+        form.reset();
+        showStatus("وصلتنا رسالتك، هنكلّمك في نفس اليوم.", "success");
+      } else {
+        showStatus("حصلت مشكلة في الإرسال، حاولي تاني أو تواصلي معنا عبر واتساب.", "error");
+      }
+      submitBtn.disabled = false;
+    });
+  </script>
+
+</body>
+</html>
