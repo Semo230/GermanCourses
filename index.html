@@ -321,6 +321,28 @@
       font-size: 0.95rem !important;
     }
 
+    /* WhatsApp QR code: for visitors on a computer, so hidden on phones */
+    .wa-qr { display: none; margin: 24px auto 0; }
+
+    @media (min-width: 640px) {
+      .wa-qr { display: block; }
+    }
+
+    .wa-qr img {
+      display: block;
+      margin: 0 auto;
+      padding: 8px;
+      background: var(--white);
+      border: 1.5px solid var(--beige-dark);
+      border-radius: 12px;
+    }
+
+    .wa-qr figcaption {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
     .contact-facts {
       list-style: none;
       max-width: 520px;
@@ -486,6 +508,11 @@
           واتساب
         </a>
         <p class="wa-note">زر مباشر لبدء المحادثة وإرسال استفساركم.</p>
+        <figure class="wa-qr">
+          <img src="images/whatsapp-qr.svg" width="160" height="160" loading="lazy"
+               alt="كود QR للتواصل عبر واتساب على الرقم 01212234806">
+          <figcaption>أو امسحوا الكود بكاميرا الموبايل</figcaption>
+        </figure>
         <ul class="contact-facts">
           <li><strong>نظام الدراسة:</strong> حضوري وأونلاين.</li>
           <li><strong>مكان الدروس:</strong> غير معلن، وبيتحدد عند التواصل والاستفسار.</li>
