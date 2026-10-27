@@ -39,7 +39,10 @@
 
     /* Hero */
     .hero {
-      background: linear-gradient(160deg, var(--red) 0%, var(--red-dark) 100%);
+      background:
+        linear-gradient(160deg, rgba(139, 26, 26, 0.86) 0%, rgba(107, 18, 18, 0.93) 100%),
+        url("images/cover.jpg") center / cover no-repeat;
+      background-color: var(--red);
       color: var(--white);
       text-align: center;
       padding: 64px 0 80px;
@@ -84,6 +87,27 @@
 
     .tagline bdi { direction: ltr; }
 
+    .levels {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .level {
+      direction: ltr;
+      background: var(--white);
+      color: var(--red);
+      font-weight: 800;
+      font-size: 1.4rem;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    }
+
     /* Sections */
     section { padding: 56px 0 0; }
 
@@ -113,16 +137,38 @@
 
     @media (min-width: 640px) {
       .services { grid-template-columns: 1fr 1fr; }
-      .services.three { grid-template-columns: repeat(3, 1fr); }
     }
 
     /* About */
     .about {
+      display: grid;
+      gap: 20px;
+      align-items: center;
       background: var(--white);
       border-radius: var(--radius);
       padding: 28px 22px;
       box-shadow: 0 6px 20px rgba(107, 18, 18, 0.08);
       font-size: 1.08rem;
+    }
+
+    .about-photo {
+      display: block;
+      width: 100%;
+      max-width: 240px;
+      height: auto;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: top;
+      margin: 0 auto;
+      border-bottom: 5px solid var(--red);
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+
+    @media (min-width: 640px) {
+      .about {
+        grid-template-columns: 240px 1fr;
+        gap: 32px;
+      }
     }
 
     .about p + p { margin-top: 12px; }
@@ -306,6 +352,10 @@
       <h1 class="brand">Deutsch mit Asmaa<span>Abd ElHamid</span></h1>
       <div class="teacher"><bdi>Frau Asmaa</bdi> | معلمة اللغة الألمانية</div>
       <p class="tagline">ابدأ رحلتك في اللغة الألمانية مع <bdi>Deutsch mit Asmaa</bdi>، وافهم الألماني خطوة بخطوة.</p>
+      <div class="levels" aria-label="المستويات">
+        <div class="level">A1</div>
+        <div class="level">A2</div>
+      </div>
     </div>
   </header>
 
@@ -313,17 +363,22 @@
     <section>
       <h2>مين إحنا</h2>
       <div class="about">
-        <p><bdi>Frau Asmaa Abd ElHamid</bdi>، خريجة كلية الألسن بتقدير جيد جدًا، وحاصلة على الدبلوم العام التربوي.</p>
-        <p>بنقدّم دروس لغة ألمانية حضوريًا وأونلاين للطلاب، مع الاهتمام بشرح القواعد والمفردات ومساعدة الطلاب على فهم اللغة والتدرّب عليها.</p>
+        <img class="about-photo" src="images/asmaa.jpg" width="720" height="985"
+             alt="Frau Asmaa Abd ElHamid، معلمة اللغة الألمانية">
+        <div>
+          <p><bdi>Frau Asmaa Abd ElHamid</bdi>، خريجة كلية الألسن بتقدير جيد جدًا، وحاصلة على الدبلوم العام التربوي.</p>
+          <p>بنقدّم دروس لغة ألمانية حضوريًا وأونلاين للطلاب، مع الاهتمام بشرح القواعد والمفردات ومساعدة الطلاب على فهم اللغة والتدرّب عليها.</p>
+        </div>
       </div>
     </section>
 
     <section>
       <h2>لمين الدروس دي؟</h2>
-      <ul class="services three">
+      <ul class="services">
         <li>طلاب المدارس الحكومية التجريبية.</li>
         <li>طلاب المدارس الخاصة.</li>
         <li>طلاب المدارس الدولية.</li>
+        <li>المتعلمين اللي عايزين يدرسوا مستوى <bdi>A1</bdi> أو <bdi>A2</bdi>.</li>
       </ul>
     </section>
 
@@ -331,6 +386,7 @@
       <h2>خدماتنا التعليمية</h2>
       <ul class="services">
         <li>دروس لغة ألمانية حضوريًا وأونلاين.</li>
+        <li>كورسات لمستويات <bdi>A1</bdi> و<bdi>A2</bdi>.</li>
         <li>شرح القواعد والمفردات.</li>
         <li>التدريب على القراءة والفهم والتطبيق.</li>
         <li>شرح ومراجعة الدروس وفقًا لاحتياجات الطالب.</li>
