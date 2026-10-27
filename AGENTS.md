@@ -1,0 +1,4 @@
+- Deutsch mit Asmaa. المعلومات في info.md، وما تخترعش غيرها.
+- كل push على main بيتنشر على Cloudflare Pages لوحده.
+- الفورم بيحفظ في جدول messages على Supabase.
+- بعد أي تعديل: ابعت رسالة من الفورم على لينك pages.dev، واتأكد إنها وصلت الجدول.

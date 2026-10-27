@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Deutsch mit Asmaa</title>
-  <meta name="description" content="Frau Asmaa | معلمة اللغة الألمانية - رحلتك لتعلُّم اللغة الألمانية تبدأ من هنا!">
+  <meta name="description" content="Frau Asmaa | معلمة اللغة الألمانية - ابدأ رحلتك في اللغة الألمانية مع Deutsch mit Asmaa، وافهم الألماني خطوة بخطوة.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -75,32 +75,14 @@
     .teacher bdi { direction: ltr; }
 
     .tagline {
-      margin-top: 20px;
-      font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+      max-width: 640px;
+      margin: 20px auto 0;
+      font-size: clamp(1.15rem, 4.2vw, 1.5rem);
       font-weight: 700;
       color: var(--beige);
     }
 
-    .levels {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 28px;
-    }
-
-    .level {
-      direction: ltr;
-      background: var(--white);
-      color: var(--red);
-      font-weight: 800;
-      font-size: 1.4rem;
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-    }
+    .tagline bdi { direction: ltr; }
 
     /* Sections */
     section { padding: 56px 0 0; }
@@ -131,6 +113,24 @@
 
     @media (min-width: 640px) {
       .services { grid-template-columns: 1fr 1fr; }
+      .services.three { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* About */
+    .about {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 22px;
+      box-shadow: 0 6px 20px rgba(107, 18, 18, 0.08);
+      font-size: 1.08rem;
+    }
+
+    .about p + p { margin-top: 12px; }
+
+    .about bdi {
+      direction: ltr;
+      color: var(--red);
+      font-weight: 800;
     }
 
     .services li {
@@ -202,6 +202,20 @@
       margin-top: 14px !important;
       font-size: 0.95rem !important;
     }
+
+    .contact-facts {
+      list-style: none;
+      max-width: 520px;
+      margin: 28px auto 0;
+      padding-top: 20px;
+      border-top: 1.5px solid var(--beige-dark);
+      text-align: right;
+      color: var(--muted);
+    }
+
+    .contact-facts li + li { margin-top: 8px; }
+
+    .contact-facts strong { color: var(--text); }
 
     /* Contact form */
     .form-card {
@@ -291,22 +305,35 @@
     <div class="container">
       <h1 class="brand">Deutsch mit Asmaa<span>Abd ElHamid</span></h1>
       <div class="teacher"><bdi>Frau Asmaa</bdi> | معلمة اللغة الألمانية</div>
-      <p class="tagline">رحلتك لتعلُّم اللغة الألمانية تبدأ من هنا!</p>
-      <div class="levels" aria-label="المستويات">
-        <div class="level">A1</div>
-        <div class="level">A2</div>
-      </div>
+      <p class="tagline">ابدأ رحلتك في اللغة الألمانية مع <bdi>Deutsch mit Asmaa</bdi>، وافهم الألماني خطوة بخطوة.</p>
     </div>
   </header>
 
   <main class="container">
     <section>
+      <h2>مين إحنا</h2>
+      <div class="about">
+        <p><bdi>Frau Asmaa Abd ElHamid</bdi>، خريجة كلية الألسن بتقدير جيد جدًا، وحاصلة على الدبلوم العام التربوي.</p>
+        <p>بنقدّم دروس لغة ألمانية حضوريًا للطلاب، مع الاهتمام بشرح القواعد والمفردات ومساعدة الطلاب على فهم اللغة والتدرّب عليها.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>لمين الدروس دي؟</h2>
+      <ul class="services three">
+        <li>طلاب المدارس الحكومية التجريبية.</li>
+        <li>طلاب المدارس الخاصة.</li>
+        <li>طلاب المدارس الدولية.</li>
+      </ul>
+    </section>
+
+    <section>
       <h2>خدماتنا التعليمية</h2>
       <ul class="services">
-        <li>دروس ألماني لجميع الصفوف والمراحل الدراسية.</li>
-        <li>للمدارس الحكومية والخاصة والدولية.</li>
-        <li>كورسات للمبتدئين <bdi>A1</bdi> و<bdi>A2</bdi>.</li>
-        <li>وسائل تعليمية متنوعة وملخصات وأسئلة وتدريبات للتقوية.</li>
+        <li>دروس لغة ألمانية حضوريًا.</li>
+        <li>شرح القواعد والمفردات.</li>
+        <li>التدريب على القراءة والفهم والتطبيق.</li>
+        <li>شرح ومراجعة الدروس وفقًا لاحتياجات الطالب.</li>
       </ul>
     </section>
 
@@ -320,6 +347,11 @@
           واتساب
         </a>
         <p class="wa-note">زر مباشر لبدء المحادثة وإرسال استفسارك.</p>
+        <ul class="contact-facts">
+          <li><strong>نظام الدراسة:</strong> حضوري فقط، مش أونلاين.</li>
+          <li><strong>مكان الدروس:</strong> بيتحدد عند التواصل والاستفسار.</li>
+          <li><strong>المناطق:</strong> أبراج النور، الإسراء، ج. مبارك، بروتكس، القبّوطي، ومناطق أخرى.</li>
+        </ul>
       </div>
     </section>
 
@@ -436,7 +468,7 @@
 
       if (results.some((r) => r.status === "fulfilled")) {
         form.reset();
-        showStatus("وصلتنا رسالتك، هنكلّمك في نفس اليوم.", "success");
+        showStatus("وصلتنا رسالتك، وهنتواصل معاك قريب.", "success");
       } else {
         showStatus("حصلت مشكلة في الإرسال، حاولي تاني أو تواصلي معنا عبر واتساب.", "error");
       }
