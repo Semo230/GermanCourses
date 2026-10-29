@@ -1,0 +1,364 @@
+@import "tailwindcss";
+
+/* Brand tokens, unchanged from the old HTML pages. Page-only styles live next to each page
+   (home.css, quiz.css, lesson.css) and are nested under that page's class so they never leak. */
+:root {
+  --beige: #f5ecdd;
+  --beige-dark: #e8d9bf;
+  --red: #8b1a1a;
+  --red-dark: #6b1212;
+  --white: #ffffff;
+  --text: #3a2a1f;
+  --muted: #6e5a4a;
+  /* Darker than WhatsApp's #25d366 so white text stays readable (5.4:1). */
+  --whatsapp: #0f7a40;
+  --green-bg: #e7f6ec;
+  --green-text: #1e6b3a;
+  --red-bg: #fbe9e9;
+  --amber-bg: #fdf3dc;
+  --amber-text: #7a4b00;
+  --radius: 18px;
+}
+
+/* The same tokens as Tailwind colours, for the new pages (bg-brand, text-muted, ...). */
+@theme inline {
+  --color-brand: var(--red);
+  --color-brand-dark: var(--red-dark);
+  --color-beige: var(--beige);
+  --color-beige-dark: var(--beige-dark);
+  --color-ink: var(--text);
+  --color-muted: var(--muted);
+  --color-whatsapp: var(--whatsapp);
+  --color-ok-bg: var(--green-bg);
+  --color-ok: var(--green-text);
+  --color-bad-bg: var(--red-bg);
+  --color-warn-bg: var(--amber-bg);
+  --color-warn: var(--amber-text);
+  --font-sans: var(--font-cairo), "Segoe UI", Tahoma, sans-serif;
+}
+
+@layer base {
+  [hidden] { display: none !important; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+
+  a, button, input, select, textarea { touch-action: manipulation; }
+
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible {
+    outline: 3px solid var(--red);
+    outline-offset: 3px;
+  }
+
+  .hero a:focus-visible,
+  .hero button:focus-visible,
+  .inner-hero a:focus-visible,
+  .inner-hero button:focus-visible { outline-color: var(--white); }
+
+  /* Tailwind resets headings to normal weight; the old pages relied on the browser default (bold). */
+  h1, h2, h3 { font-weight: 700; }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--beige);
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  bdi[lang="de"] { direction: ltr; }
+
+  /* Browser surfaces in the palette: selection, caret, native checks and radios. */
+  ::selection { background: var(--red); color: var(--white); }
+  input, textarea { caret-color: var(--red); }
+  :root { accent-color: var(--red); }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  /* Compact burgundy header for inner pages (quiz, lesson, sign-in, account, admin). */
+  .inner-hero {
+    background:
+      linear-gradient(160deg, rgba(139, 26, 26, 0.86) 0%, rgba(107, 18, 18, 0.93) 100%),
+      url("/images/cover.jpg") center / cover no-repeat;
+    background-color: var(--red);
+    color: var(--white);
+    text-align: center;
+    padding: 28px 0 48px;
+    border-radius: 0 0 36px 36px;
+  }
+
+  .inner-hero h1 {
+    margin-top: 12px;
+    font-size: clamp(1.7rem, 6vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1.3;
+  }
+
+  .inner-hero p {
+    max-width: 560px;
+    margin: 12px auto 0;
+    color: var(--beige);
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .top-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px 16px;
+  }
+
+  .home-link,
+  .account-link {
+    color: var(--beige-dark);
+    font-weight: 700;
+    text-decoration: none;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .home-link:hover,
+  .account-link:hover { color: var(--white); }
+
+  .home-link bdi { direction: ltr; }
+
+  /* Flat on the sand (DESIGN.md "The Flat Desk Rule"). The home and quiz pages add back their original shadow. */
+  .card {
+    background: var(--white);
+    border: 1.5px solid var(--beige-dark);
+    border-radius: var(--radius);
+    padding: 28px 22px;
+  }
+
+  .main-btn {
+    display: inline-block;
+    font-family: inherit;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    background: var(--red);
+    border: none;
+    border-radius: 999px;
+    padding: 12px 32px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.15s ease;
+  }
+
+  .main-btn:hover { background: var(--red-dark); }
+  .main-btn:disabled { opacity: 0.6; cursor: wait; }
+
+  .ghost-btn {
+    display: inline-block;
+    font-family: inherit;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--red);
+    background: var(--white);
+    border: 1.5px solid var(--red);
+    border-radius: 999px;
+    padding: 10px 28px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.15s ease;
+  }
+
+  .ghost-btn:hover { background: var(--beige); }
+  .ghost-btn:disabled { opacity: 0.6; cursor: wait; }
+
+  .link-btn {
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--red);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  /* WhatsApp buttons */
+  .wa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--whatsapp);
+    color: var(--white);
+    font-family: inherit;
+    font-size: 1.15rem;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 6px 16px rgba(15, 122, 64, 0.35);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .wa-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(15, 122, 64, 0.4);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wa-btn:hover { transform: none; }
+  }
+
+  .wa-btn svg { width: 24px; height: 24px; fill: currentColor; }
+
+  /* Floating WhatsApp button (phones only) */
+  .wa-float {
+    display: none;
+    position: fixed;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    left: calc(16px + env(safe-area-inset-left));
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--whatsapp);
+    color: var(--white);
+    place-items: center;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    z-index: 10;
+  }
+
+  .wa-float svg { width: 30px; height: 30px; fill: currentColor; }
+
+  /* Forms (contact form, sign-in, booking, account, admin) */
+  .form-card {
+    background: var(--white);
+    border: 1.5px solid var(--beige-dark);
+    border-radius: var(--radius);
+    padding: 32px 22px;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .field { margin-bottom: 18px; }
+
+  .field label,
+  .field legend {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .field .req { color: var(--red); }
+
+  .field input,
+  .field textarea,
+  .field select {
+    width: 100%;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--text);
+    background: var(--beige);
+    border: 1.5px solid var(--beige-dark);
+    border-radius: 12px;
+    padding: 12px 14px;
+    min-height: 48px;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .field input[type="tel"],
+  .field input[type="email"],
+  .field input[type="password"] { direction: ltr; text-align: right; }
+
+  .field textarea { min-height: 130px; resize: vertical; }
+
+  .field input:focus-visible,
+  .field textarea:focus-visible,
+  .field select:focus-visible {
+    outline: none;
+    border-color: var(--red);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(139, 26, 26, 0.2);
+  }
+
+  .field [aria-invalid="true"] { border-color: var(--red); }
+
+  .field-hint {
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .field-error {
+    margin-top: 6px;
+    color: var(--red);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .submit-btn {
+    width: 100%;
+    font-family: inherit;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--white);
+    background: var(--red);
+    border: none;
+    border-radius: 999px;
+    padding: 14px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+
+  .submit-btn:hover { background: var(--red-dark); }
+  .submit-btn:disabled { opacity: 0.6; cursor: wait; }
+
+  .form-status {
+    margin-top: 16px;
+    padding: 14px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .form-status.success { background: var(--green-bg); color: var(--green-text); }
+  .form-status.error { background: var(--red-bg); color: var(--red); }
+  .form-status.info { background: var(--beige); color: var(--text); }
+
+  /* Status labels (bookings, messages, students): always text, never colour alone. */
+  .badge {
+    display: inline-block;
+    padding: 2px 12px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    white-space: nowrap;
+    background: var(--beige);
+    color: var(--text);
+  }
+
+  .badge.new { background: var(--red-bg); color: var(--red); }
+  .badge.progress { background: var(--amber-bg); color: var(--amber-text); }
+  .badge.done { background: var(--green-bg); color: var(--green-text); }
+
+  .site-footer {
+    text-align: center;
+    padding: 48px 0 32px;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .site-footer bdi { direction: ltr; }
+
+  @media (max-width: 639px) {
+    .wa-float { display: grid; }
+    .site-footer { padding-bottom: 96px; }
+  }
+}

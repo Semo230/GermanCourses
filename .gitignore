@@ -1,1 +1,14 @@
 .env
+.env*.local
+.dev.vars*
+
+# Next.js / OpenNext / Wrangler build output
+node_modules/
+.next/
+.open-next/
+.wrangler/
+next-env.d.ts
+*.tsbuildinfo
+
+# Impeccable design hook cache
+.impeccable/hook.cache.json

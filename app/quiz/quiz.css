@@ -1,0 +1,130 @@
+/* Quiz page styles, copied unchanged from the old quiz.html. Nested under .quiz-page so they
+   only apply to the quiz. Shared styles (header, card, buttons, WhatsApp, footer) are in globals.css. */
+.quiz-page {
+    /* The quiz keeps its original lifted card (DESIGN.md: legacy card shadow). */
+    .card {
+      max-width: 620px;
+      margin: 0 auto;
+      border: none;
+      box-shadow: 0 6px 20px rgba(107, 18, 18, 0.08);
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .progress {
+      height: 8px;
+      background: var(--beige-dark);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 6px 0 24px;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: var(--red);
+      border-radius: 8px;
+      transition: width 0.25s ease;
+    }
+
+    .question {
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.7;
+    }
+
+    .question bdi[lang="de"] { color: var(--red); font-weight: 800; }
+
+    .options {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .option {
+      width: 100%;
+      font-family: inherit;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      text-align: right;
+      background: var(--beige);
+      border: 1.5px solid var(--beige-dark);
+      border-radius: 12px;
+      padding: 12px 16px;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .option[lang="de"] { direction: ltr; text-align: left; }
+
+    .option:hover:not(:disabled) { border-color: var(--red); background: var(--white); }
+    .option:disabled { cursor: default; }
+    .option.correct { background: var(--green-bg); border-color: var(--green-text); color: var(--green-text); }
+    .option.wrong { background: var(--red-bg); border-color: var(--red); color: var(--red); }
+
+    .feedback {
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+
+    .feedback.correct { background: var(--green-bg); color: var(--green-text); }
+    .feedback.wrong { background: var(--red-bg); color: var(--red); }
+
+    .feedback strong { display: block; }
+
+    .next-row { margin-top: 20px; text-align: center; }
+
+    .result { text-align: center; }
+
+    .score {
+      direction: ltr;
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--red);
+      line-height: 1.2;
+    }
+
+    .score small { font-size: 0.45em; color: var(--muted); }
+
+    .result h2 {
+      margin-top: 8px;
+      font-size: clamp(1.4rem, 5vw, 1.8rem);
+      color: var(--red);
+    }
+
+    .result p {
+      margin: 10px auto 0;
+      max-width: 480px;
+      font-size: 1.08rem;
+      color: var(--muted);
+    }
+
+    .result .wa-btn { margin-top: 24px; }
+
+    .result-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 20px;
+      margin-top: 20px;
+    }
+
+    .result-links a { color: var(--red); font-weight: 700; }
+
+    /* Tailwind makes buttons inherit the body line height; the old buttons used the browser default. */
+    .option, .main-btn, .link-btn { line-height: normal; }
+
+    .saved-note { margin-top: 12px; color: var(--green-text); font-weight: 700; }
+    .saved-note.failed { color: var(--muted); font-weight: 600; }
+}

@@ -1,0 +1,187 @@
+/* Lesson page styles, copied unchanged from the old lesson.html. Nested under .lesson-page so they
+   only apply to the lesson page. Shared styles (header, buttons, WhatsApp, footer) are in globals.css. */
+.lesson-page {
+    section { padding: 48px 0 0; scroll-margin-top: 16px; }
+
+    h2 {
+      /* The old page got bold headings from the browser; Tailwind's preflight resets them. */
+      font-weight: 700;
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      color: var(--red);
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    h2::after {
+      content: "";
+      display: block;
+      width: 56px;
+      height: 4px;
+      background: var(--red);
+      border-radius: 4px;
+      margin: 10px auto 0;
+    }
+
+    .section-intro {
+      max-width: 620px;
+      margin: 0 auto 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .section-intro bdi { font-weight: 800; color: var(--red); }
+
+    /* Listen buttons: the 🔊 icon only shows when the device has a German voice. */
+    .say {
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      /* The old page got this from the browser's button style; preflight makes buttons inherit 1.8. */
+      line-height: normal;
+      color: inherit;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      direction: ltr;
+    }
+
+    .say .icon { font-size: 0.8em; }
+
+    .no-audio .say { cursor: default; pointer-events: none; }
+    .no-audio .say .icon { display: none; }
+
+    .audio-note {
+      max-width: 620px;
+      margin: 0 auto 20px;
+      padding: 12px 14px;
+      background: var(--white);
+      border-right: 5px solid var(--red);
+      border-radius: 12px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* Alphabet grid */
+    .letters {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      /* Latin alphabet reads A to Z, left to right. */
+      direction: ltr;
+    }
+
+    @media (min-width: 640px) {
+      .letters { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .letters li {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 14px 12px;
+      text-align: center;
+      box-shadow: 0 4px 14px rgba(107, 18, 18, 0.07);
+    }
+
+    .letters .say-letter {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: var(--red);
+      line-height: 1.3;
+    }
+
+    .letters .name,
+    .letters .meaning { direction: rtl; }
+
+    .letters .name { color: var(--muted); font-size: 0.95rem; }
+
+    .letters .say-word { margin-top: 6px; font-weight: 700; }
+
+    .letters .meaning { color: var(--muted); font-size: 0.9rem; }
+
+    /* Sound rules */
+    .sounds {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 640px) {
+      .sounds { grid-template-columns: 1fr 1fr; }
+    }
+
+    .sounds li {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 4px 14px;
+      align-items: center;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      border-right: 5px solid var(--red);
+      box-shadow: 0 4px 14px rgba(107, 18, 18, 0.07);
+    }
+
+    .sounds .say-letter {
+      grid-row: span 2;
+      justify-content: center;
+      white-space: nowrap;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--red);
+    }
+
+    .sounds .tip { font-weight: 600; }
+
+    .sounds .example { color: var(--muted); }
+
+    .sounds .example .say { font-weight: 700; color: var(--text); }
+
+    /* Practice words */
+    .practice {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .practice li {
+      background: var(--white);
+      border: 1.5px solid var(--beige-dark);
+      border-radius: 999px;
+      padding: 8px 18px;
+    }
+
+    .practice .say { font-weight: 800; color: var(--red); }
+
+    .practice .meaning { color: var(--muted); font-size: 0.95rem; }
+
+    /* Closing call to action */
+    .cta {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px 22px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(107, 18, 18, 0.08);
+    }
+
+    .cta p {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 520px;
+      margin: 0 auto 20px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+}
