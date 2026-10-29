@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>اختبر مستواك في الألماني | Deutsch mit Asmaa</title>
+  <meta name="description" content="اختبار سريع من 10 أسئلة يعرّفكم مستواكم في اللغة الألمانية (A1 أو A2) مع Deutsch mit Asmaa.">
+  <meta name="theme-color" content="#8b1a1a">
+
+  <!-- Link preview on WhatsApp / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ar_EG">
+  <meta property="og:url" content="https://germancourses.asmaaabdelhamidm.workers.dev/quiz">
+  <meta property="og:title" content="اختبر مستواك في الألماني | Deutsch mit Asmaa">
+  <meta property="og:description" content="10 أسئلة سريعة تعرّفكم مستواكم في الألماني: تبدأوا A1 ولا جاهزين لـ A2؟">
+  <meta property="og:image" content="https://germancourses.asmaaabdelhamidm.workers.dev/images/cover.jpg">
+  <meta property="og:image:width" content="669">
+  <meta property="og:image:height" content="458">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%238b1a1a'/%3E%3Ctext x='32' y='45' font-family='Arial,sans-serif' font-size='38' font-weight='700' fill='%23f5ecdd' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Base styles copied from index.html - keep them in sync. */
+    :root {
+      --beige: #f5ecdd;
+      --beige-dark: #e8d9bf;
+      --red: #8b1a1a;
+      --red-dark: #6b1212;
+      --white: #ffffff;
+      --text: #3a2a1f;
+      --muted: #6e5a4a;
+      /* Darker than WhatsApp's #25d366 so white text stays readable (5.4:1). */
+      --whatsapp: #0f7a40;
+      --green-bg: #e7f6ec;
+      --green-text: #1e6b3a;
+      --red-bg: #fbe9e9;
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    [hidden] { display: none !important; }
+
+    a, button { touch-action: manipulation; }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--red);
+      outline-offset: 3px;
+    }
+
+    .hero a:focus-visible { outline-color: var(--white); }
+
+    body {
+      font-family: "Cairo", "Segoe UI", Tahoma, sans-serif;
+      background: var(--beige);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    bdi[lang="de"] { direction: ltr; }
+
+    /* Compact hero for inner pages */
+    .hero {
+      background:
+        linear-gradient(160deg, rgba(139, 26, 26, 0.86) 0%, rgba(107, 18, 18, 0.93) 100%),
+        url("images/cover.jpg") center / cover no-repeat;
+      background-color: var(--red);
+      color: var(--white);
+      text-align: center;
+      padding: 28px 0 48px;
+      border-radius: 0 0 36px 36px;
+    }
+
+    .home-link {
+      display: inline-block;
+      direction: ltr;
+      color: var(--beige-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .home-link:hover { color: var(--white); }
+
+    .hero h1 {
+      margin-top: 12px;
+      font-size: clamp(1.7rem, 6vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.3;
+    }
+
+    .hero p {
+      max-width: 560px;
+      margin: 12px auto 0;
+      color: var(--beige);
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    main { padding: 40px 0 0; }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 22px;
+      box-shadow: 0 6px 20px rgba(107, 18, 18, 0.08);
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--whatsapp);
+      color: var(--white);
+      font-family: inherit;
+      font-size: 1.15rem;
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 6px 16px rgba(15, 122, 64, 0.35);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .wa-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(15, 122, 64, 0.4);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wa-btn:hover { transform: none; }
+    }
+
+    .wa-btn svg { width: 24px; height: 24px; fill: currentColor; }
+
+    /* Floating WhatsApp button (phones only) */
+    .wa-float {
+      display: none;
+      position: fixed;
+      bottom: calc(16px + env(safe-area-inset-bottom));
+      left: calc(16px + env(safe-area-inset-left));
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--whatsapp);
+      color: var(--white);
+      place-items: center;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+      z-index: 10;
+    }
+
+    .wa-float svg { width: 30px; height: 30px; fill: currentColor; }
+
+    @media (max-width: 639px) {
+      .wa-float { display: grid; }
+      footer { padding-bottom: 96px; }
+    }
+
+    .main-btn {
+      display: inline-block;
+      font-family: inherit;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      background: var(--red);
+      border: none;
+      border-radius: 999px;
+      padding: 12px 32px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s ease;
+    }
+
+    .main-btn:hover { background: var(--red-dark); }
+
+    .link-btn {
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--red);
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 48px 0 32px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    footer bdi { direction: ltr; }
+
+    /* Quiz */
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .progress {
+      height: 8px;
+      background: var(--beige-dark);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 6px 0 24px;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: var(--red);
+      border-radius: 8px;
+      transition: width 0.25s ease;
+    }
+
+    .question {
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.7;
+    }
+
+    .question bdi[lang="de"] { color: var(--red); font-weight: 800; }
+
+    .options {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .option {
+      width: 100%;
+      font-family: inherit;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      text-align: right;
+      background: var(--beige);
+      border: 1.5px solid var(--beige-dark);
+      border-radius: 12px;
+      padding: 12px 16px;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .option[lang="de"] { direction: ltr; text-align: left; }
+
+    .option:hover:not(:disabled) { border-color: var(--red); background: var(--white); }
+    .option:disabled { cursor: default; }
+    .option.correct { background: var(--green-bg); border-color: var(--green-text); color: var(--green-text); }
+    .option.wrong { background: var(--red-bg); border-color: var(--red); color: var(--red); }
+
+    .feedback {
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+
+    .feedback.correct { background: var(--green-bg); color: var(--green-text); }
+    .feedback.wrong { background: var(--red-bg); color: var(--red); }
+
+    .feedback strong { display: block; }
+
+    .next-row { margin-top: 20px; text-align: center; }
+
+    .result { text-align: center; }
+
+    .score {
+      direction: ltr;
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--red);
+      line-height: 1.2;
+    }
+
+    .score small { font-size: 0.45em; color: var(--muted); }
+
+    .result h2 {
+      margin-top: 8px;
+      font-size: clamp(1.4rem, 5vw, 1.8rem);
+      color: var(--red);
+    }
+
+    .result p {
+      margin: 10px auto 0;
+      max-width: 480px;
+      font-size: 1.08rem;
+      color: var(--muted);
+    }
+
+    .result .wa-btn { margin-top: 24px; }
+
+    .result-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 20px;
+      margin-top: 20px;
+    }
+
+    .result-links a { color: var(--red); font-weight: 700; }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="container">
+      <a class="home-link" href="index.html" translate="no">Deutsch mit Asmaa</a>
+      <h1>اختبر مستواك في الألماني</h1>
+      <p>10 أسئلة سريعة تعرّفكم تبدأوا منين: <bdi>A1</bdi> ولا <bdi>A2</bdi>؟</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card" id="quiz" aria-live="polite">
+      <div id="question-view">
+        <div class="progress-label">
+          <span id="progress-text"></span>
+          <span id="score-text"></span>
+        </div>
+        <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+        <p class="question" id="question"></p>
+        <ul class="options" id="options"></ul>
+        <div id="feedback" class="feedback" hidden></div>
+        <div class="next-row"><button class="main-btn" id="next-btn" type="button" hidden>السؤال اللي بعده</button></div>
+      </div>
+
+      <div id="result-view" class="result" hidden tabindex="-1">
+        <div class="score"><span id="final-score"></span><small> / 10</small></div>
+        <h2 id="result-title"></h2>
+        <p id="result-text"></p>
+        <a class="wa-btn" id="result-wa" href="https://wa.me/201212234806" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path id="wa-icon" d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.04 21.5h-.01a9.43 9.43 0 0 1-4.8-1.32l-.35-.2-3.57.93.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.02c0-5.2 4.24-9.44 9.45-9.44 2.52 0 4.89.99 6.67 2.77a9.37 9.37 0 0 1 2.76 6.68c0 5.2-4.24 9.44-9.44 9.44zm8.04-17.48A11.3 11.3 0 0 0 12.04.7C5.77.7.67 5.8.67 12.06c0 2 .52 3.96 1.52 5.68L.57 23.3l5.7-1.5a11.34 11.34 0 0 0 5.77 1.47h.01c6.26 0 11.36-5.1 11.37-11.36 0-3.04-1.18-5.89-3.34-8.04z"/></svg>
+          ابعتوا نتيجتكم على واتساب
+        </a>
+        <div class="result-links">
+          <button class="link-btn" id="restart-btn" type="button">أعيدوا الاختبار</button>
+          <a href="lesson.html">درس مجاني: الحروف والنطق</a>
+          <a href="index.html">الصفحة الرئيسية</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <bdi translate="no">Deutsch mit Asmaa Abd ElHamid</bdi>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/201212234806?text=%D8%A3%D9%87%D9%84%D8%A7%D9%8B%D8%8C%20%D8%B9%D9%86%D8%AF%D9%8A%20%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AF%D8%B1%D9%88%D8%B3%20%D8%A7%D9%84%D9%84%D8%BA%D8%A9%20%D8%A7%D9%84%D8%A3%D9%84%D9%85%D8%A7%D9%86%D9%8A%D8%A9."
+     target="_blank" rel="noopener" aria-label="التواصل عبر واتساب">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>
+  </a>
+
+  <script>
+    // Quiz content: drafted by Claude, must be approved by Frau Asmaa before publishing.
+    // In "text", German goes inside [[...]] so it is shown left-to-right in red.
+    const QUESTIONS = [
+      {
+        text: "يعني إيه [[Guten Morgen]]؟",
+        lang: "ar",
+        options: ["مساء الخير", "صباح الخير", "مع السلامة", "تصبحوا على خير"],
+        answer: 1,
+        explain: "Morgen = الصبح، فـ Guten Morgen = صباح الخير.",
+      },
+      {
+        text: "كمّلوا الجملة: [[Ich ___ Mona.]]",
+        lang: "de",
+        options: ["heißt", "heißen", "heiße", "heiß"],
+        answer: 2,
+        explain: "مع ich الفعل بياخد ‎-e في الآخر: Ich heiße Mona.",
+      },
+      {
+        text: "حد سألكم [[Wie alt bist du?]] تردّوا بإيه؟",
+        lang: "de",
+        options: ["Ich komme aus Ägypten.", "Ich bin 14 Jahre alt.", "Ich heiße Ali.", "Mir geht's gut."],
+        answer: 1,
+        explain: "Wie alt bist du? = عندك كام سنة؟ والرد: Ich bin 14 Jahre alt.",
+      },
+      {
+        text: "اختاروا أداة التعريف الصح: [[___ Buch ist neu.]]",
+        lang: "de",
+        options: ["Das", "Der", "Die", "Den"],
+        answer: 0,
+        explain: "كلمة Buch (كتاب) محايدة، فبنقول: das Buch.",
+      },
+      {
+        text: "كمّلوا الجملة: [[Wir ___ in Kairo.]]",
+        lang: "de",
+        options: ["wohnt", "wohne", "wohnst", "wohnen"],
+        answer: 3,
+        explain: "مع wir الفعل بيرجع لأصله: wir wohnen.",
+      },
+      {
+        text: "كمّلوا الجملة: [[Ich habe ___ Bruder.]]",
+        lang: "de",
+        options: ["ein", "einen", "eine", "einer"],
+        answer: 1,
+        explain: "Bruder مذكر، وبعد haben بيبقى مفعول به (Akkusativ)، فـ ein بتبقى einen.",
+      },
+      {
+        text: "جمع كلمة [[das Kind]] (طفل) هو:",
+        lang: "de",
+        options: ["die Kinds", "die Kinde", "die Kinder", "die Kindern"],
+        answer: 2,
+        explain: "das Kind ← die Kinder.",
+      },
+      {
+        text: "اختاروا كلمة السؤال الصح: [[___ fährst du am Wochenende? – Nach Alexandria.]]",
+        lang: "de",
+        options: ["Wohin", "Woher", "Wo", "Wann"],
+        answer: 0,
+        explain: "الرد Nach Alexandria (لإسكندرية)، يعني السؤال عن المكان اللي رايحين له: Wohin.",
+      },
+      {
+        text: "كمّلوا الجملة: [[Gestern ___ ich ins Kino gegangen.]]",
+        lang: "de",
+        options: ["habe", "bin", "war", "hat"],
+        answer: 1,
+        explain: "gehen في الماضي التام (Perfekt) بييجي مع sein: ich bin gegangen.",
+      },
+      {
+        text: "كمّلوا الجملة: [[Ich komme nicht, ___ ich krank bin.]]",
+        lang: "de",
+        options: ["denn", "aber", "weil", "und"],
+        answer: 2,
+        explain: "بعد weil الفعل بيروح آخر الجملة: weil ich krank bin.",
+      },
+    ];
+
+    // Score ranges agreed in SPEC.md: 0-3, 4-7, 8-10.
+    function resultFor(score) {
+      if (score <= 3) {
+        return {
+          title: "ابدأوا من الأول",
+          text: "مفيش أي مشكلة! كورس A1 هيبدأ معاكم من الصفر، خطوة بخطوة.",
+          course: "A1",
+        };
+      }
+      if (score <= 7) {
+        return {
+          title: "عندكم أساسيات",
+          text: "عندكم بداية كويسة. كمّلوا مستوى A1 عشان تثبّتوا القواعد والمفردات.",
+          course: "A1",
+        };
+      }
+      return {
+        title: "جاهزين لـ A2",
+        text: "مستواكم كويس جدًا في أساسيات A1، وتقدروا تبدأوا كورس A2.",
+        course: "A2",
+      };
+    }
+
+    const questionView = document.getElementById("question-view");
+    const resultView = document.getElementById("result-view");
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+    const feedbackEl = document.getElementById("feedback");
+    const nextBtn = document.getElementById("next-btn");
+    const progressText = document.getElementById("progress-text");
+    const progressBar = document.getElementById("progress-bar");
+    const scoreText = document.getElementById("score-text");
+
+    let current = 0;
+    let score = 0;
+
+    // Renders Arabic text with [[German]] parts wrapped in <bdi lang="de">.
+    function setMixedText(el, text) {
+      el.textContent = "";
+      text.split(/(\[\[.*?\]\])/).forEach((part) => {
+        if (part.startsWith("[[")) {
+          const bdi = document.createElement("bdi");
+          bdi.lang = "de";
+          bdi.textContent = part.slice(2, -2);
+          el.append(bdi);
+        } else if (part) {
+          el.append(part);
+        }
+      });
+    }
+
+    function showQuestion() {
+      const q = QUESTIONS[current];
+      progressText.textContent = "سؤال " + (current + 1) + " من " + QUESTIONS.length;
+      scoreText.textContent = "الإجابات الصح: " + score;
+      progressBar.style.width = (current / QUESTIONS.length) * 100 + "%";
+      setMixedText(questionEl, q.text);
+
+      optionsEl.textContent = "";
+      q.options.forEach((option, i) => {
+        const li = document.createElement("li");
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "option";
+        btn.textContent = option;
+        if (q.lang === "de") btn.lang = "de";
+        btn.addEventListener("click", () => choose(i));
+        li.append(btn);
+        optionsEl.append(li);
+      });
+
+      feedbackEl.hidden = true;
+      nextBtn.hidden = true;
+    }
+
+    function choose(i) {
+      const q = QUESTIONS[current];
+      const buttons = optionsEl.querySelectorAll(".option");
+      buttons.forEach((btn) => { btn.disabled = true; });
+      buttons[q.answer].classList.add("correct");
+
+      const isCorrect = i === q.answer;
+      if (isCorrect) {
+        score++;
+      } else {
+        buttons[i].classList.add("wrong");
+      }
+      scoreText.textContent = "الإجابات الصح: " + score;
+
+      feedbackEl.className = "feedback " + (isCorrect ? "correct" : "wrong");
+      feedbackEl.textContent = "";
+      const heading = document.createElement("strong");
+      heading.textContent = isCorrect ? "إجابة صح! 👏" : "مش مظبوطة، الإجابة الصح: " + q.options[q.answer];
+      feedbackEl.append(heading, q.explain);
+      feedbackEl.hidden = false;
+
+      nextBtn.textContent = current === QUESTIONS.length - 1 ? "شوفوا النتيجة" : "السؤال اللي بعده";
+      nextBtn.hidden = false;
+      nextBtn.focus();
+    }
+
+    function showResult() {
+      const result = resultFor(score);
+      document.getElementById("final-score").textContent = score;
+      document.getElementById("result-title").textContent = result.title;
+      document.getElementById("result-text").textContent = result.text;
+
+      const message = "أهلاً، عملت اختبار المستوى على صفحة Deutsch mit Asmaa وجبت " + score +
+        " من 10 (" + result.title + "). عايز أعرف تفاصيل كورس " + result.course + ".";
+      document.getElementById("result-wa").href =
+        "https://wa.me/201212234806?text=" + encodeURIComponent(message);
+
+      questionView.hidden = true;
+      resultView.hidden = false;
+      resultView.focus();
+    }
+
+    nextBtn.addEventListener("click", () => {
+      current++;
+      if (current < QUESTIONS.length) {
+        showQuestion();
+        questionEl.scrollIntoView({ block: "nearest" });
+      } else {
+        showResult();
+      }
+    });
+
+    document.getElementById("restart-btn").addEventListener("click", () => {
+      current = 0;
+      score = 0;
+      resultView.hidden = true;
+      questionView.hidden = false;
+      showQuestion();
+    });
+
+    showQuestion();
+  </script>
+
+</body>
+</html>

@@ -153,6 +153,27 @@
 
     .hero-cta:hover { background: var(--white); }
 
+    /* Links to the free quiz and lesson pages */
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .hero-link {
+      color: var(--white);
+      font-weight: 700;
+      padding: 8px 22px;
+      border: 1.5px solid rgba(255, 255, 255, 0.6);
+      border-radius: 999px;
+      text-decoration: none;
+      transition: background 0.15s ease;
+    }
+
+    .hero-link:hover { background: rgba(255, 255, 255, 0.14); }
+
     /* Sections */
     section { padding: 56px 0 0; scroll-margin-top: 16px; }
 
@@ -461,6 +482,10 @@
         <div class="level">A2</div>
       </div>
       <a class="hero-cta" href="#contact">للاستفسار عن الأسعار والمواعيد</a>
+      <div class="hero-links">
+        <a class="hero-link" href="quiz.html">اختبر مستواك في الألماني</a>
+        <a class="hero-link" href="lesson.html">درس مجاني: الحروف والنطق</a>
+      </div>
     </div>
   </header>
 

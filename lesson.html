@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>درس مجاني: الحروف والنطق في الألماني | Deutsch mit Asmaa</title>
+  <meta name="description" content="درس مجاني من Deutsch mit Asmaa: اتعلّموا الحروف الألمانية ونطقها، و ä ö ü ß، والأصوات اللي بتلخبط المتعلمين العرب، واسمعوا النطق بنفسكم.">
+  <meta name="theme-color" content="#8b1a1a">
+
+  <!-- Link preview on WhatsApp / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ar_EG">
+  <meta property="og:url" content="https://germancourses.asmaaabdelhamidm.workers.dev/lesson">
+  <meta property="og:title" content="درس مجاني: الحروف والنطق في الألماني | Deutsch mit Asmaa">
+  <meta property="og:description" content="اتعلّموا الحروف الألمانية ونطقها، واسمعوا كل حرف وكلمة بنفسكم.">
+  <meta property="og:image" content="https://germancourses.asmaaabdelhamidm.workers.dev/images/cover.jpg">
+  <meta property="og:image:width" content="669">
+  <meta property="og:image:height" content="458">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%238b1a1a'/%3E%3Ctext x='32' y='45' font-family='Arial,sans-serif' font-size='38' font-weight='700' fill='%23f5ecdd' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Base styles copied from index.html - keep them in sync. */
+    :root {
+      --beige: #f5ecdd;
+      --beige-dark: #e8d9bf;
+      --red: #8b1a1a;
+      --red-dark: #6b1212;
+      --white: #ffffff;
+      --text: #3a2a1f;
+      --muted: #6e5a4a;
+      /* Darker than WhatsApp's #25d366 so white text stays readable (5.4:1). */
+      --whatsapp: #0f7a40;
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    [hidden] { display: none !important; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+    }
+
+    a, button { touch-action: manipulation; }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--red);
+      outline-offset: 3px;
+    }
+
+    .hero a:focus-visible { outline-color: var(--white); }
+
+    body {
+      font-family: "Cairo", "Segoe UI", Tahoma, sans-serif;
+      background: var(--beige);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    bdi[lang="de"] { direction: ltr; }
+
+    /* Compact hero for inner pages */
+    .hero {
+      background:
+        linear-gradient(160deg, rgba(139, 26, 26, 0.86) 0%, rgba(107, 18, 18, 0.93) 100%),
+        url("images/cover.jpg") center / cover no-repeat;
+      background-color: var(--red);
+      color: var(--white);
+      text-align: center;
+      padding: 28px 0 48px;
+      border-radius: 0 0 36px 36px;
+    }
+
+    .home-link {
+      display: inline-block;
+      direction: ltr;
+      color: var(--beige-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .home-link:hover { color: var(--white); }
+
+    .hero h1 {
+      margin-top: 12px;
+      font-size: clamp(1.7rem, 6vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.3;
+    }
+
+    .hero p {
+      max-width: 560px;
+      margin: 12px auto 0;
+      color: var(--beige);
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    section { padding: 48px 0 0; scroll-margin-top: 16px; }
+
+    h2 {
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      color: var(--red);
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    h2::after {
+      content: "";
+      display: block;
+      width: 56px;
+      height: 4px;
+      background: var(--red);
+      border-radius: 4px;
+      margin: 10px auto 0;
+    }
+
+    .section-intro {
+      max-width: 620px;
+      margin: 0 auto 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .section-intro bdi { font-weight: 800; color: var(--red); }
+
+    .wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--whatsapp);
+      color: var(--white);
+      font-family: inherit;
+      font-size: 1.15rem;
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 6px 16px rgba(15, 122, 64, 0.35);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .wa-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(15, 122, 64, 0.4);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wa-btn:hover { transform: none; }
+    }
+
+    .wa-btn svg { width: 24px; height: 24px; fill: currentColor; }
+
+    /* Floating WhatsApp button (phones only) */
+    .wa-float {
+      display: none;
+      position: fixed;
+      bottom: calc(16px + env(safe-area-inset-bottom));
+      left: calc(16px + env(safe-area-inset-left));
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--whatsapp);
+      color: var(--white);
+      place-items: center;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+      z-index: 10;
+    }
+
+    .wa-float svg { width: 30px; height: 30px; fill: currentColor; }
+
+    @media (max-width: 639px) {
+      .wa-float { display: grid; }
+      footer { padding-bottom: 96px; }
+    }
+
+    .main-btn {
+      display: inline-block;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      background: var(--red);
+      border-radius: 999px;
+      padding: 12px 32px;
+      text-decoration: none;
+      transition: background 0.15s ease;
+    }
+
+    .main-btn:hover { background: var(--red-dark); }
+
+    footer {
+      text-align: center;
+      padding: 48px 0 32px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    footer bdi { direction: ltr; }
+
+    /* Listen buttons: the 🔊 icon only shows when the device has a German voice. */
+    .say {
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      color: inherit;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      direction: ltr;
+    }
+
+    .say .icon { font-size: 0.8em; }
+
+    .no-audio .say { cursor: default; pointer-events: none; }
+    .no-audio .say .icon { display: none; }
+
+    .audio-note {
+      max-width: 620px;
+      margin: 0 auto 20px;
+      padding: 12px 14px;
+      background: var(--white);
+      border-right: 5px solid var(--red);
+      border-radius: 12px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* Alphabet grid */
+    .letters {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      /* Latin alphabet reads A to Z, left to right. */
+      direction: ltr;
+    }
+
+    @media (min-width: 640px) {
+      .letters { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .letters li {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 14px 12px;
+      text-align: center;
+      box-shadow: 0 4px 14px rgba(107, 18, 18, 0.07);
+    }
+
+    .letters .say-letter {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: var(--red);
+      line-height: 1.3;
+    }
+
+    .letters .name,
+    .letters .meaning { direction: rtl; }
+
+    .letters .name { color: var(--muted); font-size: 0.95rem; }
+
+    .letters .say-word { margin-top: 6px; font-weight: 700; }
+
+    .letters .meaning { color: var(--muted); font-size: 0.9rem; }
+
+    /* Sound rules */
+    .sounds {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 640px) {
+      .sounds { grid-template-columns: 1fr 1fr; }
+    }
+
+    .sounds li {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 4px 14px;
+      align-items: center;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      border-right: 5px solid var(--red);
+      box-shadow: 0 4px 14px rgba(107, 18, 18, 0.07);
+    }
+
+    .sounds .say-letter {
+      grid-row: span 2;
+      justify-content: center;
+      white-space: nowrap;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--red);
+    }
+
+    .sounds .tip { font-weight: 600; }
+
+    .sounds .example { color: var(--muted); }
+
+    .sounds .example .say { font-weight: 700; color: var(--text); }
+
+    /* Practice words */
+    .practice {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .practice li {
+      background: var(--white);
+      border: 1.5px solid var(--beige-dark);
+      border-radius: 999px;
+      padding: 8px 18px;
+    }
+
+    .practice .say { font-weight: 800; color: var(--red); }
+
+    .practice .meaning { color: var(--muted); font-size: 0.95rem; }
+
+    /* Closing call to action */
+    .cta {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px 22px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(107, 18, 18, 0.08);
+    }
+
+    .cta p {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 520px;
+      margin: 0 auto 20px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+  </style>
+</head>
+<body class="no-audio">
+
+  <header class="hero">
+    <div class="container">
+      <a class="home-link" href="index.html" translate="no">Deutsch mit Asmaa</a>
+      <h1>درس مجاني: الحروف والنطق</h1>
+      <p>اتعلّموا تنطقوا الحروف الألمانية صح، واسمعوا كل حرف وكلمة بنفسكم.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <p class="audio-note" id="audio-note" hidden>جهازكم مفيهوش صوت ألماني، فالنطق مكتوب بالحروف العربية بس. جرّبوا تفتحوا الصفحة من متصفح Chrome أو Safari عشان تسمعوا النطق.</p>
+
+    <section>
+      <h2>الحروف الألمانية</h2>
+      <p class="section-intro">الألماني فيه نفس الـ 26 حرف بتوع الإنجليزي، بس بيتنطقوا بطريقة مختلفة. اضغطوا على الحرف أو الكلمة عشان تسمعوا النطق 🔊</p>
+      <ul class="letters">
+        <li><button class="say say-letter" type="button" data-say="A" lang="de">A a <span class="icon" aria-hidden="true">🔊</span></button><div class="name">آ</div><button class="say say-word" type="button" lang="de">Apfel <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">تفاحة</div></li>
+        <li><button class="say say-letter" type="button" data-say="B" lang="de">B b <span class="icon" aria-hidden="true">🔊</span></button><div class="name">بيه</div><button class="say say-word" type="button" lang="de">Ball <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">كورة</div></li>
+        <li><button class="say say-letter" type="button" data-say="C" lang="de">C c <span class="icon" aria-hidden="true">🔊</span></button><div class="name">تسيه</div><button class="say say-word" type="button" lang="de">Computer <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">كمبيوتر</div></li>
+        <li><button class="say say-letter" type="button" data-say="D" lang="de">D d <span class="icon" aria-hidden="true">🔊</span></button><div class="name">ديه</div><button class="say say-word" type="button" lang="de">Dach <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">سقف</div></li>
+        <li><button class="say say-letter" type="button" data-say="E" lang="de">E e <span class="icon" aria-hidden="true">🔊</span></button><div class="name">إيه</div><button class="say say-word" type="button" lang="de">Elefant <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">فيل</div></li>
+        <li><button class="say say-letter" type="button" data-say="F" lang="de">F f <span class="icon" aria-hidden="true">🔊</span></button><div class="name">إف</div><button class="say say-word" type="button" lang="de">Fisch <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">سمكة</div></li>
+        <li><button class="say say-letter" type="button" data-say="G" lang="de">G g <span class="icon" aria-hidden="true">🔊</span></button><div class="name">جيه (ج مصرية)</div><button class="say say-word" type="button" lang="de">Garten <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">جنينة</div></li>
+        <li><button class="say say-letter" type="button" data-say="H" lang="de">H h <span class="icon" aria-hidden="true">🔊</span></button><div class="name">ها</div><button class="say say-word" type="button" lang="de">Haus <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">بيت</div></li>
+        <li><button class="say say-letter" type="button" data-say="I" lang="de">I i <span class="icon" aria-hidden="true">🔊</span></button><div class="name">إي</div><button class="say say-word" type="button" lang="de">Igel <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">قنفد</div></li>
+        <li><button class="say say-letter" type="button" data-say="J" lang="de">J j <span class="icon" aria-hidden="true">🔊</span></button><div class="name">يوت</div><button class="say say-word" type="button" lang="de">Jahr <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">سنة</div></li>
+        <li><button class="say say-letter" type="button" data-say="K" lang="de">K k <span class="icon" aria-hidden="true">🔊</span></button><div class="name">كا</div><button class="say say-word" type="button" lang="de">Katze <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">قطة</div></li>
+        <li><button class="say say-letter" type="button" data-say="L" lang="de">L l <span class="icon" aria-hidden="true">🔊</span></button><div class="name">إل</div><button class="say say-word" type="button" lang="de">Lampe <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">لمبة</div></li>
+        <li><button class="say say-letter" type="button" data-say="M" lang="de">M m <span class="icon" aria-hidden="true">🔊</span></button><div class="name">إم</div><button class="say say-word" type="button" lang="de">Mutter <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">أم</div></li>
+        <li><button class="say say-letter" type="button" data-say="N" lang="de">N n <span class="icon" aria-hidden="true">🔊</span></button><div class="name">إن</div><button class="say say-word" type="button" lang="de">Nase <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">مناخير</div></li>
+        <li><button class="say say-letter" type="button" data-say="O" lang="de">O o <span class="icon" aria-hidden="true">🔊</span></button><div class="name">أو</div><button class="say say-word" type="button" lang="de">Obst <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">فاكهة</div></li>
+        <li><button class="say say-letter" type="button" data-say="P" lang="de">P p <span class="icon" aria-hidden="true">🔊</span></button><div class="name">پيه</div><button class="say say-word" type="button" lang="de">Papa <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">بابا</div></li>
+        <li><button class="say say-letter" type="button" data-say="Q" lang="de">Q q <span class="icon" aria-hidden="true">🔊</span></button><div class="name">كو</div><button class="say say-word" type="button" lang="de">Qualle <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">قنديل البحر</div></li>
+        <li><button class="say say-letter" type="button" data-say="R" lang="de">R r <span class="icon" aria-hidden="true">🔊</span></button><div class="name">إر</div><button class="say say-word" type="button" lang="de">Rose <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">وردة</div></li>
+        <li><button class="say say-letter" type="button" data-say="S" lang="de">S s <span class="icon" aria-hidden="true">🔊</span></button><div class="name">إس</div><button class="say say-word" type="button" lang="de">Sonne <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">شمس</div></li>
+        <li><button class="say say-letter" type="button" data-say="T" lang="de">T t <span class="icon" aria-hidden="true">🔊</span></button><div class="name">تيه</div><button class="say say-word" type="button" lang="de">Tisch <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">ترابيزة</div></li>
+        <li><button class="say say-letter" type="button" data-say="U" lang="de">U u <span class="icon" aria-hidden="true">🔊</span></button><div class="name">أوو</div><button class="say say-word" type="button" lang="de">Uhr <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">ساعة</div></li>
+        <li><button class="say say-letter" type="button" data-say="V" lang="de">V v <span class="icon" aria-hidden="true">🔊</span></button><div class="name">فاو</div><button class="say say-word" type="button" lang="de">Vogel <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">عصفورة</div></li>
+        <li><button class="say say-letter" type="button" data-say="W" lang="de">W w <span class="icon" aria-hidden="true">🔊</span></button><div class="name">ڤيه</div><button class="say say-word" type="button" lang="de">Wasser <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">مية</div></li>
+        <li><button class="say say-letter" type="button" data-say="X" lang="de">X x <span class="icon" aria-hidden="true">🔊</span></button><div class="name">إكس</div><button class="say say-word" type="button" lang="de">Xylofon <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">إكسيليفون</div></li>
+        <li><button class="say say-letter" type="button" data-say="Y" lang="de">Y y <span class="icon" aria-hidden="true">🔊</span></button><div class="name">إپسيلون</div><button class="say say-word" type="button" lang="de">Yoga <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">يوجا</div></li>
+        <li><button class="say say-letter" type="button" data-say="Z" lang="de">Z z <span class="icon" aria-hidden="true">🔊</span></button><div class="name">تسيت</div><button class="say say-word" type="button" lang="de">Zug <span class="icon" aria-hidden="true">🔊</span></button><div class="meaning">قطر</div></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>الحروف الخاصة بالألماني</h2>
+      <p class="section-intro">الحروف دي مش موجودة في الإنجليزي: النقطتين فوق الحرف اسمهم <bdi lang="de">Umlaut</bdi>.</p>
+      <ul class="sounds">
+        <li><button class="say say-letter" type="button" data-say="Ä" lang="de">Ä ä <span class="icon" aria-hidden="true">🔊</span></button><div class="tip">زي «إيه» بس الصوت مفتوح شوية.</div><div class="example">مثال: <button class="say" type="button" lang="de">Mädchen <span class="icon" aria-hidden="true">🔊</span></button> = بنت</div></li>
+        <li><button class="say say-letter" type="button" data-say="Ö" lang="de">Ö ö <span class="icon" aria-hidden="true">🔊</span></button><div class="tip">قولوا «إيه» وانتو مدوّرين شفايفكم.</div><div class="example">مثال: <button class="say" type="button" lang="de">schön <span class="icon" aria-hidden="true">🔊</span></button> = حلو</div></li>
+        <li><button class="say say-letter" type="button" data-say="Ü" lang="de">Ü ü <span class="icon" aria-hidden="true">🔊</span></button><div class="tip">قولوا «إي» وانتو مدوّرين شفايفكم كأنكم هتقولوا «أو».</div><div class="example">مثال: <button class="say" type="button" lang="de">Tür <span class="icon" aria-hidden="true">🔊</span></button> = باب</div></li>
+        <li><button class="say say-letter" type="button" data-say="ß" lang="de">ß <span class="icon" aria-hidden="true">🔊</span></button><div class="tip">اسمه <bdi lang="de">Eszett</bdi>، وبيتنطق «س» قوية زي <bdi lang="de">ss</bdi>.</div><div class="example">مثال: <button class="say" type="button" lang="de">Straße <span class="icon" aria-hidden="true">🔊</span></button> = شارع</div></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>أصوات مهمة</h2>
+      <p class="section-intro">الحروف دي لما تيجي مع بعض بتعمل صوت مختلف، وهي اللي بتلخبط أغلب المتعلمين.</p>
+      <ul class="sounds">
+        <li><span class="say-letter" lang="de">ch</span><div class="tip">بعد <bdi lang="de">a / o / u</bdi> بتتنطق «خ».</div><div class="example">مثال: <button class="say" type="button" lang="de">Buch <span class="icon" aria-hidden="true">🔊</span></button> = كتاب</div></li>
+        <li><span class="say-letter" lang="de">ch</span><div class="tip">بعد <bdi lang="de">e / i / ä / ö / ü</bdi> بتتنطق «ش» خفيفة جدًا، زي الهمس.</div><div class="example">مثال: <button class="say" type="button" lang="de">ich <span class="icon" aria-hidden="true">🔊</span></button> = أنا</div></li>
+        <li><span class="say-letter" lang="de">sch</span><div class="tip">بتتنطق «ش».</div><div class="example">مثال: <button class="say" type="button" lang="de">Schule <span class="icon" aria-hidden="true">🔊</span></button> = مدرسة</div></li>
+        <li><span class="say-letter" lang="de">ei</span><div class="tip">بتتنطق «آي».</div><div class="example">مثال: <button class="say" type="button" lang="de">nein <span class="icon" aria-hidden="true">🔊</span></button> = لأ</div></li>
+        <li><span class="say-letter" lang="de">ie</span><div class="tip">بتتنطق «إي» طويلة.</div><div class="example">مثال: <button class="say" type="button" lang="de">vier <span class="icon" aria-hidden="true">🔊</span></button> = أربعة</div></li>
+        <li><span class="say-letter" lang="de">eu / äu</span><div class="tip">بتتنطق «أوي».</div><div class="example">مثال: <button class="say" type="button" lang="de">Deutsch <span class="icon" aria-hidden="true">🔊</span></button> = ألماني</div></li>
+        <li><span class="say-letter" lang="de">w</span><div class="tip">بتتنطق «ڤ»، مش «و».</div><div class="example">مثال: <button class="say" type="button" lang="de">Welt <span class="icon" aria-hidden="true">🔊</span></button> = عالم</div></li>
+        <li><span class="say-letter" lang="de">v</span><div class="tip">غالبًا بتتنطق «ف».</div><div class="example">مثال: <button class="say" type="button" lang="de">Vater <span class="icon" aria-hidden="true">🔊</span></button> = أب</div></li>
+        <li><span class="say-letter" lang="de">z</span><div class="tip">بتتنطق «تس».</div><div class="example">مثال: <button class="say" type="button" lang="de">Zeit <span class="icon" aria-hidden="true">🔊</span></button> = وقت</div></li>
+        <li><span class="say-letter" lang="de">j</span><div class="tip">بتتنطق «ي».</div><div class="example">مثال: <button class="say" type="button" lang="de">ja <span class="icon" aria-hidden="true">🔊</span></button> = أيوه</div></li>
+        <li><span class="say-letter" lang="de">s</span><div class="tip">قبل حرف متحرك بتتنطق «ز».</div><div class="example">مثال: <button class="say" type="button" lang="de">sieben <span class="icon" aria-hidden="true">🔊</span></button> = سبعة</div></li>
+        <li><span class="say-letter" lang="de">st / sp</span><div class="tip">في أول الكلمة بتتنطق «شت» و«شپ».</div><div class="example">مثال: <button class="say" type="button" lang="de">Stadt <span class="icon" aria-hidden="true">🔊</span></button> = مدينة، <button class="say" type="button" lang="de">Sport <span class="icon" aria-hidden="true">🔊</span></button> = رياضة</div></li>
+        <li><span class="say-letter" lang="de">r</span><div class="tip">بتطلع من الزور، قريبة من «غ» خفيفة.</div><div class="example">مثال: <button class="say" type="button" lang="de">rot <span class="icon" aria-hidden="true">🔊</span></button> = أحمر</div></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>جرّبوا تقولوا</h2>
+      <p class="section-intro">اسمعوا الكلمات دي وقولوها بصوت عالي.</p>
+      <ul class="practice">
+        <li><button class="say" type="button" lang="de">Hallo <span class="icon" aria-hidden="true">🔊</span></button> <span class="meaning">أهلاً</span></li>
+        <li><button class="say" type="button" lang="de">Danke <span class="icon" aria-hidden="true">🔊</span></button> <span class="meaning">شكرًا</span></li>
+        <li><button class="say" type="button" lang="de">Bitte <span class="icon" aria-hidden="true">🔊</span></button> <span class="meaning">من فضلك</span></li>
+        <li><button class="say" type="button" lang="de">Tschüss <span class="icon" aria-hidden="true">🔊</span></button> <span class="meaning">باي</span></li>
+        <li><button class="say" type="button" lang="de">Entschuldigung <span class="icon" aria-hidden="true">🔊</span></button> <span class="meaning">لو سمحت / آسف</span></li>
+        <li><button class="say" type="button" lang="de">Deutschland <span class="icon" aria-hidden="true">🔊</span></button> <span class="meaning">ألمانيا</span></li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="cta">
+        <h2>عايزين تكمّلوا؟</h2>
+        <p>اعرفوا مستواكم في الألماني في دقيقتين، أو كلّمونا على واتساب عشان تعرفوا تفاصيل الكورسات.</p>
+        <div class="cta-buttons">
+          <a class="main-btn" href="quiz.html">اختبر مستواك في الألماني</a>
+          <a class="wa-btn" href="https://wa.me/201212234806?text=%D8%A3%D9%87%D9%84%D8%A7%D9%8B%D8%8C%20%D8%B9%D9%86%D8%AF%D9%8A%20%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AF%D8%B1%D9%88%D8%B3%20%D8%A7%D9%84%D9%84%D8%BA%D8%A9%20%D8%A7%D9%84%D8%A3%D9%84%D9%85%D8%A7%D9%86%D9%8A%D8%A9." target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path id="wa-icon" d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.04 21.5h-.01a9.43 9.43 0 0 1-4.8-1.32l-.35-.2-3.57.93.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.02c0-5.2 4.24-9.44 9.45-9.44 2.52 0 4.89.99 6.67 2.77a9.37 9.37 0 0 1 2.76 6.68c0 5.2-4.24 9.44-9.44 9.44zm8.04-17.48A11.3 11.3 0 0 0 12.04.7C5.77.7.67 5.8.67 12.06c0 2 .52 3.96 1.52 5.68L.57 23.3l5.7-1.5a11.34 11.34 0 0 0 5.77 1.47h.01c6.26 0 11.36-5.1 11.37-11.36 0-3.04-1.18-5.89-3.34-8.04z"/></svg>
+            واتساب
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <bdi translate="no">Deutsch mit Asmaa Abd ElHamid</bdi>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/201212234806?text=%D8%A3%D9%87%D9%84%D8%A7%D9%8B%D8%8C%20%D8%B9%D9%86%D8%AF%D9%8A%20%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AF%D8%B1%D9%88%D8%B3%20%D8%A7%D9%84%D9%84%D8%BA%D8%A9%20%D8%A7%D9%84%D8%A3%D9%84%D9%85%D8%A7%D9%86%D9%8A%D8%A9."
+     target="_blank" rel="noopener" aria-label="التواصل عبر واتساب">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>
+  </a>
+
+  <script>
+    // Lesson content: drafted by Claude, must be approved by Frau Asmaa before publishing.
+    // Pronunciation uses the browser's built-in German voice (Web Speech API) - no audio files.
+    const synth = window.speechSynthesis;
+    let germanVoice = null;
+
+    function findGermanVoice() {
+      if (!synth || germanVoice) return;
+      germanVoice = synth.getVoices().find((v) => v.lang.toLowerCase().replace("_", "-").startsWith("de"));
+      if (germanVoice) {
+        document.body.classList.remove("no-audio");
+        document.getElementById("audio-note").hidden = true;
+      }
+    }
+
+    function speak(text) {
+      if (!germanVoice) return;
+      synth.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.voice = germanVoice;
+      utterance.lang = germanVoice.lang;
+      utterance.rate = 0.8;
+      synth.speak(utterance);
+    }
+
+    document.querySelectorAll(".say").forEach((btn) => {
+      // Letters speak data-say; words speak their own text without the icon.
+      const text = btn.dataset.say || btn.firstChild.textContent.trim();
+      btn.setAttribute("aria-label", "اسمعوا نطق " + text);
+      btn.addEventListener("click", () => speak(text));
+    });
+
+    if (synth) {
+      findGermanVoice();
+      synth.addEventListener("voiceschanged", findGermanVoice);
+    }
+
+    // Voices load late on some browsers, so wait before telling the visitor there is none.
+    setTimeout(() => {
+      if (!germanVoice) document.getElementById("audio-note").hidden = false;
+    }, 2500);
+  </script>
+
+</body>
+</html>
