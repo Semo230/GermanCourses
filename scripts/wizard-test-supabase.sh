@@ -203,6 +203,15 @@ run_wizard() {
 TOTAL_STAGES=7
 LIVE_REF="twvrftjwwwiliywjdtjo"
 
+# Open links in Chrome when it is installed (the owner signs in to Supabase there), not the default browser.
+CHROME="/c/Program Files/Google/Chrome/Application/chrome.exe"
+if [[ -x "$CHROME" ]]; then
+  open_url() {
+    printf '  %s↗ opening in Chrome%s %s\n' "$GREEN" "$RESET" "$1"
+    "$CHROME" "$1" >/dev/null 2>&1 &
+  }
+fi
+
 # Run from the repo root so .env lands next to index.html, and never let it be committed.
 cd "$(dirname "$0")/.."
 if ! git check-ignore -q .env; then
