@@ -6,3 +6,17 @@
 - الفورم بيحفظ في جدول messages على Supabase (المفتاح العام بيضيف بس، ما بيقراش) وبيبعت إيميل بـ Web3Forms. الرسالة بتظهر "وصلت" لو واحد بس منهم نجح، فاتأكد من الاتنين.
 - ما تعدّلش ولا تمسح رسايل حقيقية في جدول messages، وما تحطش أي secret key في الكود.
 - بعد أي تعديل على index.html أو الفورم: ابعت رسالة من الفورم على الموقع الرسمي باسم "TEST – Claude"، واتأكد إن Supabase رجّع 201 وإن الرسالة ظاهرة في Supabase dashboard ← Table Editor ← messages.
+
+## Agent skills
+
+### Issue tracker
+
+التذاكر على GitHub Issues في Semo230/GermanCourses، وبنستخدم `gh`. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+الـ labels الخمسة الافتراضية: needs-triage, needs-info, ready-for-agent, ready-for-human, wontfix. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: `GLOSSARY.md` و`docs/adr/` في جذر المشروع، وبيتعملوا لما نحتاجهم بس. See `docs/agents/domain.md`.
