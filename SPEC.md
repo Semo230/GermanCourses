@@ -1,6 +1,6 @@
 # SPEC · Deutsch mit Asmaa: level quiz and free pronunciation lesson
 
-Status: **spec approved (2026-10-29), built on branch `quiz-and-lesson`.** The quiz and lesson content still needs Frau Asmaa's approval before it is merged into `main`.
+Status: **built and published (2026-10-29).** The content was approved, and PR #2 was merged into `main`.
 
 ## 1. The project today
 
@@ -126,6 +126,7 @@ Run each test on a phone screen and on a computer.
 - **Computer voices** vary between devices, and some Android phones have no German voice installed. 🔊 may not work for everyone. Mitigation: hide the buttons when there's no voice.
 - **Content accuracy:** Claude drafts the questions and the lesson, so a mistake is possible until Asmaa reviews them.
 - **Supabase connection:** it's failing in this Claude session, so the form check (test 16) may need to be done by hand in the Supabase dashboard.
-- **Publishing:** merging into `main` goes live immediately, and there's no confirmed preview site. If Cloudflare has branch previews turned on, they can be used for testing before the merge.
+- **Publishing:** merging into `main` goes live immediately. Cloudflare branch preview builds failed for PR #2, even though `main` builds fine, so there is no working preview site. A push to `main` also publishes to a second Worker (`germancoursesss`) and to GitHub Pages.
+- **Email copy of form messages:** in the live test, Web3Forms answered 403 to the automated browser, so no email was sent for that test. Supabase saved the message (201). It's still unconfirmed whether emails reach Asmaa from a normal phone or browser.
 - **Duplicate style rules:** copying the styles into each page means a future colour or font change has to be made in three files.
 - **Outdated copy:** `Downloads\Agent.md\GermanCourses.md\md` is an older version of `info.md` (in-person only, with areas listed). It is ignored, and the project's `info.md` is the reference.
