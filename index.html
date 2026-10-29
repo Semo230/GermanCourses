@@ -468,12 +468,126 @@
     }
 
     footer bdi { direction: ltr; }
+
+    /* Sticker mascot in the hero: tap to change pose */
+    .mascot {
+      position: relative;
+      display: block;
+      margin: -24px auto 12px;
+      padding: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .mascot-img {
+      display: block;
+      height: 170px;
+      width: auto;
+      filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.3));
+    }
+
+    .mascot-bubble {
+      position: absolute;
+      top: -14px;
+      left: 60%;
+      direction: ltr;
+      white-space: nowrap;
+      background: var(--white);
+      color: var(--red);
+      font-weight: 800;
+      font-size: 1.05rem;
+      padding: 4px 14px;
+      border-radius: 16px 16px 16px 4px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (min-width: 640px) {
+      .mascot-img { height: 210px; }
+      .mascot-bubble { top: 6px; left: 100%; margin-left: -14px; }
+    }
+
+    /* Stickers that pop up beside a section heading */
+    section.has-peek { position: relative; }
+
+    .peek {
+      position: absolute;
+      top: 34px;
+      left: 0;
+      height: 84px;
+      width: auto;
+      filter: drop-shadow(0 6px 10px rgba(107, 18, 18, 0.2));
+      pointer-events: none;
+    }
+
+    #contact .peek { top: 14px; left: 10px; }
+
+    @media (min-width: 640px) {
+      .peek { height: 120px; top: 20px; }
+      #contact .peek { top: 0; left: 18px; }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .mascot { animation: pop-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+      .mascot-img { animation: float 4s ease-in-out 0.7s infinite; transition: transform 0.2s ease; }
+      .mascot:hover .mascot-img { transform: rotate(-4deg) scale(1.05); }
+      .mascot.swap .mascot-img { animation: boing 0.5s ease; }
+      .mascot.nudge .mascot-img { animation: wiggle 0.8s ease; }
+      .mascot-bubble { animation: bubble 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s both; }
+      .mascot-bubble.again { animation: bubble-again 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+
+      .peek {
+        opacity: 0;
+        transform: translateY(24px) rotate(-14deg) scale(0.6);
+        transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .peek.in { opacity: 1; transform: rotate(-6deg); }
+      .peek.cheer { animation: boing 0.6s ease 2; }
+
+      @keyframes pop-in {
+        from { opacity: 0; transform: translateY(30px) scale(0.6) rotate(-10deg); }
+        to { opacity: 1; transform: none; }
+      }
+      @keyframes float {
+        0%, 100% { translate: 0 0; }
+        50% { translate: 0 -8px; }
+      }
+      @keyframes boing {
+        0% { scale: 1 1; }
+        30% { scale: 1.12 0.88; }
+        55% { scale: 0.94 1.08; }
+        80% { scale: 1.03 0.97; }
+        100% { scale: 1 1; }
+      }
+      @keyframes wiggle {
+        0%, 100% { rotate: 0deg; }
+        20% { rotate: -8deg; }
+        40% { rotate: 7deg; }
+        60% { rotate: -5deg; }
+        80% { rotate: 3deg; }
+      }
+      /* Same motion under a second name, so a pose change restarts it. */
+      @keyframes bubble {
+        from { opacity: 0; transform: scale(0.4) translateY(10px); }
+        to { opacity: 1; transform: none; }
+      }
+      @keyframes bubble-again {
+        from { opacity: 0; transform: scale(0.4) translateY(10px); }
+        to { opacity: 1; transform: none; }
+      }
+    }
   </style>
 </head>
 <body>
 
   <header class="hero">
     <div class="container">
+      <button class="mascot" type="button" aria-label="Frau Asmaa بتسلّم عليكم، دوسوا عشان تشوفوا حركة تانية">
+        <span class="mascot-bubble" aria-hidden="true" translate="no">Hallo!</span>
+        <img class="mascot-img" src="images/stickers/sticker-wave.webp" width="300" height="400" alt=""
+             fetchpriority="high">
+      </button>
       <h1 class="brand" translate="no">Deutsch mit Asmaa<span>Abd ElHamid</span></h1>
       <div class="teacher"><bdi translate="no">Frau Asmaa</bdi> | معلمة اللغة الألمانية</div>
       <p class="tagline">ابدأ رحلتك في اللغة الألمانية مع <bdi translate="no">Deutsch mit Asmaa</bdi>، وافهم الألماني خطوة بخطوة.</p>
@@ -502,7 +616,8 @@
       </div>
     </section>
 
-    <section>
+    <section class="has-peek">
+      <img class="peek" src="images/stickers/sticker-thinking.webp" width="305" height="400" alt="" loading="lazy">
       <h2>لمين الدروس دي؟</h2>
       <ul class="services">
         <li>طلاب المدارس الحكومية التجريبية.</li>
@@ -512,7 +627,8 @@
       </ul>
     </section>
 
-    <section>
+    <section class="has-peek">
+      <img class="peek" src="images/stickers/sticker-notebook.webp" width="308" height="400" alt="" loading="lazy">
       <h2>خدماتنا التعليمية</h2>
       <ul class="services">
         <li>دروس لغة ألمانية حضوريًا وأونلاين.</li>
@@ -523,7 +639,8 @@
       </ul>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="has-peek">
+      <img class="peek" src="images/stickers/sticker-thumbs-up.webp" width="302" height="400" alt="" loading="lazy">
       <div class="contact">
         <h2>استفسروا عن التفاصيل</h2>
         <p>لمعرفة الأسعار والمواعيد والعنوان، تواصلوا معنا عبر واتساب.</p>
@@ -545,7 +662,8 @@
       </div>
     </section>
 
-    <section>
+    <section class="has-peek">
+      <img id="form-peek" class="peek" src="images/stickers/sticker-confident.webp" width="294" height="400" alt="" loading="lazy">
       <h2>تواصل معنا</h2>
       <div class="form-card">
         <form id="contact-form" novalidate>
@@ -583,6 +701,79 @@
      target="_blank" rel="noopener" aria-label="التواصل عبر واتساب">
     <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#wa-icon"/></svg>
   </a>
+
+  <script>
+    // Sticker mascot: each tap shows the next pose with its greeting.
+    const POSES = [
+      { name: "wave", w: 300, say: "Hallo!" },
+      { name: "wink", w: 266, say: "Los geht's!" },
+      { name: "heart", w: 310, say: "Willkommen!" },
+      { name: "thumbs-up", w: 302, say: "Super!" },
+      { name: "celebrate", w: 316, say: "Prima!" },
+    ];
+    const stickerSrc = (name) => "images/stickers/sticker-" + name + ".webp";
+
+    const mascot = document.querySelector(".mascot");
+    const mascotImg = mascot.querySelector(".mascot-img");
+    const mascotBubble = mascot.querySelector(".mascot-bubble");
+    let pose = 0;
+
+    // Restart a CSS animation class even if it is already set.
+    function replay(el, cls) {
+      el.classList.remove(cls);
+      void el.offsetWidth;
+      el.classList.add(cls);
+    }
+
+    mascot.addEventListener("click", () => {
+      pose = (pose + 1) % POSES.length;
+      const next = POSES[pose];
+      mascotImg.src = stickerSrc(next.name);
+      mascotImg.width = next.w;
+      mascotBubble.textContent = next.say;
+      mascot.classList.remove("nudge");
+      replay(mascot, "swap");
+      replay(mascotBubble, "again");
+    });
+
+    // Go back to floating once a bounce or wiggle has finished.
+    mascotImg.addEventListener("animationend", (event) => {
+      if (event.animationName !== "float") mascot.classList.remove("swap", "nudge");
+    });
+
+    // Fetch the other poses once the page has loaded, so taps swap instantly.
+    window.addEventListener("load", () => {
+      POSES.slice(1).forEach((p) => { new Image().src = stickerSrc(p.name); });
+    });
+
+    // A little wiggle invites the first tap.
+    setTimeout(() => { if (pose === 0) mascot.classList.add("nudge"); }, 3500);
+
+    // Section stickers pop up as they scroll into view.
+    const peeks = document.querySelectorAll(".peek");
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      peeks.forEach((peek) => observer.observe(peek));
+    } else {
+      peeks.forEach((peek) => peek.classList.add("in"));
+    }
+
+    // Called when the contact form is sent.
+    function cheer() {
+      const formPeek = document.getElementById("form-peek");
+      formPeek.src = stickerSrc("celebrate");
+      formPeek.width = 316;
+      formPeek.classList.add("in");
+      replay(formPeek, "cheer");
+    }
+  </script>
 
   <script>
     // Supabase settings: paste your Project URL and publishable key here.
@@ -706,6 +897,7 @@
       if (results.some((r) => r.status === "fulfilled")) {
         form.reset();
         showStatus("وصلتنا رسالتكم، وهنتواصل معاكم قريب.", "success");
+        cheer();
       } else {
         showStatus("حصلت مشكلة في الإرسال، حاولوا تاني أو تواصلوا معنا عبر واتساب.", "error");
       }
