@@ -1,0 +1,35 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "supabase/email-templates/confirm-signup.html"
+        ],
+        "createdAt": "2026-10-29T15:34:36.376Z",
+        "reason": "Claude: deliberately matches the existing booking-email wrapper (border-top on rounded card) in supabase/functions/order-emails/index.ts page(), so all site emails look the same"
+      },
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "supabase/email-templates/invite.html"
+        ],
+        "createdAt": "2026-10-29T15:34:38.472Z",
+        "reason": "Claude: deliberately matches the existing booking-email wrapper (border-top on rounded card) in supabase/functions/order-emails/index.ts page(), so all site emails look the same"
+      },
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "supabase/email-templates/reset-password.html"
+        ],
+        "createdAt": "2026-10-29T15:34:41.340Z",
+        "reason": "Claude: deliberately matches the existing booking-email wrapper (border-top on rounded card) in supabase/functions/order-emails/index.ts page(), so all site emails look the same"
+      }
+    ]
+  }
+}
