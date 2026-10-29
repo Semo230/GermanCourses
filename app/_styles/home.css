@@ -1,0 +1,481 @@
+/* Home page styles, copied unchanged from the old index.html. Nested under .home so they
+   only apply to the home page. Shared styles (forms, WhatsApp buttons, footer) are in globals.css. */
+.home {
+    /* Hero */
+    .hero {
+      background:
+        linear-gradient(160deg, rgba(139, 26, 26, 0.86) 0%, rgba(107, 18, 18, 0.93) 100%),
+        url("/images/cover.jpg") center / cover no-repeat;
+      background-color: var(--red);
+      color: var(--white);
+      text-align: center;
+      padding: 64px 0 80px;
+      border-radius: 0 0 36px 36px;
+    }
+
+    .brand {
+      direction: ltr;
+      font-size: clamp(2rem, 7vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: 0.5px;
+    }
+
+    .brand span {
+      display: block;
+      font-size: 0.45em;
+      font-weight: 600;
+      color: var(--beige-dark);
+      margin-top: 8px;
+    }
+
+    .teacher {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 6px 20px;
+      border: 1.5px solid rgba(255, 255, 255, 0.5);
+      border-radius: 999px;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .teacher bdi { direction: ltr; }
+
+    .tagline {
+      max-width: 640px;
+      margin: 20px auto 0;
+      font-size: clamp(1.15rem, 4.2vw, 1.5rem);
+      font-weight: 700;
+      color: var(--beige);
+    }
+
+    .tagline bdi { direction: ltr; }
+
+    .levels {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .level {
+      direction: ltr;
+      background: var(--white);
+      color: var(--red);
+      font-weight: 800;
+      font-size: 1.4rem;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-cta {
+      display: inline-block;
+      margin-top: 32px;
+      background: var(--beige);
+      color: var(--red);
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 12px 30px;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+      transition: background 0.15s ease;
+    }
+
+    .hero-cta:hover { background: var(--white); }
+
+    /* Links to the free quiz and lesson pages */
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .hero-link {
+      color: var(--white);
+      font-weight: 700;
+      padding: 8px 22px;
+      border: 1.5px solid rgba(255, 255, 255, 0.6);
+      border-radius: 999px;
+      text-decoration: none;
+      transition: background 0.15s ease;
+    }
+
+    .hero-link:hover { background: rgba(255, 255, 255, 0.14); }
+
+    /* Sections */
+    section { padding: 56px 0 0; scroll-margin-top: 16px; }
+
+    h2 {
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      color: var(--red);
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    h2::after {
+      content: "";
+      display: block;
+      width: 56px;
+      height: 4px;
+      background: var(--red);
+      border-radius: 4px;
+      margin: 10px auto 0;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      list-style: none;
+    }
+
+    @media (min-width: 640px) {
+      .services { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* About */
+    .about {
+      display: grid;
+      gap: 20px;
+      align-items: center;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 22px;
+      box-shadow: 0 6px 20px rgba(107, 18, 18, 0.08);
+      font-size: 1.08rem;
+    }
+
+    .about-photo {
+      display: block;
+      width: 100%;
+      max-width: 240px;
+      height: auto;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: top;
+      margin: 0 auto;
+      border-bottom: 5px solid var(--red);
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+
+    @media (min-width: 640px) {
+      .about {
+        grid-template-columns: 240px 1fr;
+        gap: 32px;
+      }
+    }
+
+    .about p + p { margin-top: 12px; }
+
+    .about bdi {
+      direction: ltr;
+      color: var(--red);
+      font-weight: 800;
+    }
+
+    .services li {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      border-right: 5px solid var(--red);
+      box-shadow: 0 4px 14px rgba(107, 18, 18, 0.07);
+      font-size: 1.08rem;
+      font-weight: 600;
+    }
+
+    .services li bdi {
+      direction: ltr;
+      color: var(--red);
+      font-weight: 800;
+    }
+
+    /* Contact */
+    .contact {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 36px 22px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(107, 18, 18, 0.08);
+    }
+
+    .contact p {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .phone {
+      display: block;
+      direction: ltr;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--red);
+      margin: 20px 0 16px;
+      text-decoration: none;
+    }
+
+
+    .wa-note {
+      margin-top: 14px !important;
+      font-size: 0.95rem !important;
+    }
+
+    /* WhatsApp QR code: for visitors on a computer, so hidden on phones */
+    .wa-qr { display: none; margin: 24px auto 0; }
+
+    @media (min-width: 640px) {
+      .wa-qr { display: block; }
+    }
+
+    .wa-qr img {
+      display: block;
+      margin: 0 auto;
+      padding: 8px;
+      background: var(--white);
+      border: 1.5px solid var(--beige-dark);
+      border-radius: 12px;
+    }
+
+    .wa-qr figcaption {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .contact-facts {
+      list-style: none;
+      max-width: 520px;
+      margin: 28px auto 0;
+      padding-top: 20px;
+      border-top: 1.5px solid var(--beige-dark);
+      text-align: right;
+      color: var(--muted);
+    }
+
+    .contact-facts li + li { margin-top: 8px; }
+
+    .contact-facts strong { color: var(--text); }
+
+    /* Sticker mascot in the hero: tap to change pose */
+    .mascot {
+      position: relative;
+      display: block;
+      margin: -24px auto 12px;
+      padding: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .mascot-img {
+      display: block;
+      height: 170px;
+      width: auto;
+      filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.3));
+    }
+
+    .mascot-bubble {
+      position: absolute;
+      top: -14px;
+      left: 60%;
+      direction: ltr;
+      white-space: nowrap;
+      background: var(--white);
+      color: var(--red);
+      font-weight: 800;
+      font-size: 1.05rem;
+      padding: 4px 14px;
+      border-radius: 16px 16px 16px 4px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (min-width: 640px) {
+      .mascot-img { height: 210px; }
+      .mascot-bubble { top: 6px; left: 100%; margin-left: -14px; }
+    }
+
+    /* Stickers that pop up beside a section heading */
+    section.has-peek { position: relative; }
+
+    .peek {
+      position: absolute;
+      top: 34px;
+      left: 0;
+      height: 84px;
+      width: auto;
+      filter: drop-shadow(0 6px 10px rgba(107, 18, 18, 0.2));
+      pointer-events: none;
+    }
+
+    #contact .peek { top: 14px; left: 10px; }
+
+    @media (min-width: 640px) {
+      .peek { height: 120px; top: 20px; }
+      #contact .peek { top: 0; left: 18px; }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .mascot { animation: pop-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+      .mascot-img { animation: float 4s ease-in-out 0.7s infinite; transition: transform 0.2s ease; }
+      .mascot:hover .mascot-img { transform: rotate(-4deg) scale(1.05); }
+      .mascot.swap .mascot-img { animation: boing 0.5s ease; }
+      .mascot.nudge .mascot-img { animation: wiggle 0.8s ease; }
+      .mascot-bubble { animation: bubble 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s both; }
+      .mascot-bubble.again { animation: bubble-again 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+
+      .peek {
+        opacity: 0;
+        transform: translateY(24px) rotate(-14deg) scale(0.6);
+        transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .peek.in { opacity: 1; transform: rotate(-6deg); }
+      .peek.cheer { animation: boing 0.6s ease 2; }
+
+    }
+}
+
+/* Keyframes cannot be nested, so they sit outside .home. Only the mascot and stickers use them. */
+    @keyframes pop-in {
+      from { opacity: 0; transform: translateY(30px) scale(0.6) rotate(-10deg); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes float {
+      0%, 100% { translate: 0 0; }
+      50% { translate: 0 -8px; }
+    }
+    @keyframes boing {
+      0% { scale: 1 1; }
+      30% { scale: 1.12 0.88; }
+      55% { scale: 0.94 1.08; }
+      80% { scale: 1.03 0.97; }
+      100% { scale: 1 1; }
+    }
+    @keyframes wiggle {
+      0%, 100% { rotate: 0deg; }
+      20% { rotate: -8deg; }
+      40% { rotate: 7deg; }
+      60% { rotate: -5deg; }
+      80% { rotate: 3deg; }
+    }
+    /* Same motion under a second name, so a pose change restarts it. */
+    @keyframes bubble {
+      from { opacity: 0; transform: scale(0.4) translateY(10px); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes bubble-again {
+      from { opacity: 0; transform: scale(0.4) translateY(10px); }
+      to { opacity: 1; transform: none; }
+    }
+
+/* New in SPEC-2 (2.5): account links in the hero and the courses section. */
+.home {
+  /* The contact form keeps its original lifted card (DESIGN.md: legacy card shadow). */
+  .form-card {
+    border: none;
+    box-shadow: 0 6px 20px rgba(107, 18, 18, 0.08);
+  }
+
+  .hero-account {
+    display: flex;
+    justify-content: flex-end;
+    margin: -40px 0 24px;
+  }
+
+  .hero-account-link {
+    color: var(--white);
+    font-weight: 700;
+    padding: 6px 18px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background 0.15s ease;
+  }
+
+  .hero-account-link:hover { background: rgba(255, 255, 255, 0.14); }
+
+  .courses {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    list-style: none;
+  }
+
+  @media (min-width: 640px) {
+    .courses { grid-template-columns: 1fr 1fr; }
+  }
+
+  .course {
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 22px;
+    border-top: 5px solid var(--red);
+    box-shadow: 0 4px 14px rgba(107, 18, 18, 0.07);
+  }
+
+  .course-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .course h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--red);
+    line-height: 1.5;
+  }
+
+  .course-level {
+    direction: ltr;
+    flex: none;
+    background: var(--red);
+    color: var(--white);
+    font-weight: 800;
+    border-radius: 999px;
+    padding: 2px 14px;
+  }
+
+  .course-mode {
+    color: var(--muted);
+    font-weight: 700;
+    margin-top: 4px;
+  }
+
+  .course-desc {
+    margin-top: 8px;
+    font-size: 1.05rem;
+  }
+
+  .course-book {
+    /* Keeps the buttons of side-by-side cards on one line. */
+    margin-top: auto;
+    align-self: flex-start;
+    display: inline-block;
+    background: var(--red);
+    color: var(--white);
+    font-weight: 700;
+    padding: 10px 28px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background 0.15s ease;
+  }
+
+  .course p:last-of-type { margin-bottom: 16px; }
+
+  .course-book:hover { background: var(--red-dark); }
+}

@@ -200,8 +200,18 @@ finish() {
 
 run_wizard() {
 
-TOTAL_STAGES=7
+TOTAL_STAGES=9
 LIVE_REF="twvrftjwwwiliywjdtjo"
+
+# copy_sql FILE puts FILE's text on the clipboard, or says where to copy it from.
+copy_sql() {
+  if command -v clip.exe >/dev/null 2>&1 || command -v clip >/dev/null 2>&1; then
+    { clip.exe 2>/dev/null || clip; } < "$1"
+    note "The SQL is on your clipboard."
+  else
+    note "Copy the SQL from: $1"
+  fi
+}
 
 # Open links in Chrome when it is installed (the owner signs in to Supabase there), not the default browser.
 CHROME="/c/Program Files/Google/Chrome/Application/chrome.exe"
@@ -212,7 +222,7 @@ if [[ -x "$CHROME" ]]; then
   }
 fi
 
-# Run from the repo root so .env lands next to index.html, and never let it be committed.
+# Run from the repo root so .env lands next to package.json, and never let it be committed.
 cd "$(dirname "$0")/.."
 if ! git check-ignore -q .env; then
   warn ".env is not in .gitignore. Add it before running this wizard."; exit 1
@@ -264,12 +274,7 @@ pause "Press Enter to continue"
 stage "Copy the structure of the live messages table"
 say "This reads only the table definition (columns and rules), never any message."
 printf '%s' "$SCHEMA_QUERY" > "$PWD/.wizard-schema-query.sql"
-if command -v clip.exe >/dev/null 2>&1 || command -v clip >/dev/null 2>&1; then
-  printf '%s' "$SCHEMA_QUERY" | { clip.exe 2>/dev/null || clip; }
-  note "The query is on your clipboard."
-else
-  note "Copy the query from: $PWD/.wizard-schema-query.sql"
-fi
+copy_sql "$PWD/.wizard-schema-query.sql"
 open_url "https://supabase.com/dashboard/project/$LIVE_REF/sql/new"
 step "This is the LIVE project's SQL Editor. Paste the query (Ctrl+V) and click Run."
 step "The result is one row with one long text in the 'ddl' column."
@@ -288,6 +293,25 @@ rm -f "$PWD/.wizard-schema-query.sql"
 pause "Press Enter once it ran successfully"
 
 # ── 4 ─────────────────────────────────────────────────────────────────────
+stage "Add the SPEC-2 tables (accounts, courses, bookings)"
+say "The same changes the live project gets at launch: profiles, courses, orders,"
+say "quiz results, message status and the booking-email trigger."
+SPEC2_SQL="$PWD/.wizard-spec2.sql"
+{ cat supabase/migrations/*.sql
+  printf "\n-- This project's booking-email address (see the order-emails trigger above).\n"
+  printf "select vault.create_secret('https://%s.supabase.co/functions/v1/order-emails', 'order_emails_url')\n" "$REF"
+  printf "where not exists (select 1 from vault.secrets where name = 'order_emails_url');\n"
+} > "$SPEC2_SQL"
+copy_sql "$SPEC2_SQL"
+open_url "https://supabase.com/dashboard/project/$REF/sql/new"
+step "Check the project name at the top says germancourses-test."
+step "Paste (Ctrl+V) and click Run. It should end with a 'Success' message."
+note "If Supabase asks you to confirm before running, confirm: this is the test project."
+note "If it errors, copy the error message and stop here (Ctrl-C) so it can be fixed."
+pause "Press Enter once it ran successfully"
+rm -f "$SPEC2_SQL"
+
+# ── 5 ─────────────────────────────────────────────────────────────────────
 stage "Copy the test project's public key"
 open_url "https://supabase.com/dashboard/project/$REF/settings/api-keys"
 step "Under 'Publishable key', copy the key that starts with sb_publishable_"
@@ -300,17 +324,18 @@ done
 write_env SUPABASE_TEST_PUBLISHABLE_KEY "$SUPABASE_TEST_PUBLISHABLE_KEY"
 pause "Press Enter to continue"
 
-# ── 5 ─────────────────────────────────────────────────────────────────────
-stage "Turn off public sign-ups"
-say "Only the Admin may ever have an account, so nobody may sign themselves up."
+# ── 6 ─────────────────────────────────────────────────────────────────────
+stage "Keep public sign-ups on"
+say "Students make their own accounts (SPEC-2), so sign-ups must stay ON."
 open_url "https://supabase.com/dashboard/project/$REF/auth/providers"
 step "Find the setting 'Allow new users to sign up' (usually under User Signups"
-step "on Authentication → Sign In / Providers) and switch it OFF."
+step "on Authentication → Sign In / Providers) and make sure it is ON."
+step "Leave 'Confirm email' ON too: students confirm their email before signing in."
 step "Click Save if a Save button appears."
-note "Menu names change sometimes. Stage 7 checks that sign-ups are really off."
-pause "Press Enter once sign-ups are off"
+note "Menu names change sometimes. Stage 9 checks that sign-ups are really on."
+pause "Press Enter once sign-ups are on"
 
-# ── 6 ─────────────────────────────────────────────────────────────────────
+# ── 7 ─────────────────────────────────────────────────────────────────────
 stage "Create the test Admin user"
 open_url "https://supabase.com/dashboard/project/$REF/auth/users"
 step "Click 'Add user' → 'Create new user'."
@@ -321,11 +346,38 @@ ask SUPABASE_TEST_ADMIN_EMAIL "Email you used:"
 ask_secret SUPABASE_TEST_ADMIN_PASSWORD "Password you used (hidden):"
 write_env SUPABASE_TEST_ADMIN_EMAIL "$SUPABASE_TEST_ADMIN_EMAIL"
 write_env SUPABASE_TEST_ADMIN_PASSWORD "$SUPABASE_TEST_ADMIN_PASSWORD"
+say "Now make this user the Admin. Only SQL can do this, so nobody can make themselves Admin."
+ADMIN_SQL="$PWD/.wizard-admin.sql"
+printf "update auth.users set raw_app_meta_data = coalesce(raw_app_meta_data, '{}'::jsonb) || '{\"role\": \"admin\"}'\nwhere email = '%s';\n" \
+  "${SUPABASE_TEST_ADMIN_EMAIL//\'/\'\'}" > "$ADMIN_SQL"
+copy_sql "$ADMIN_SQL"
+open_url "https://supabase.com/dashboard/project/$REF/sql/new"
+step "Check the project name says germancourses-test, paste (Ctrl+V) and click Run."
+step "It should say 'Success. No rows returned'."
+pause "Press Enter once it ran"
+rm -f "$ADMIN_SQL"
+
+# ── 8 ─────────────────────────────────────────────────────────────────────
+stage "Create two test students"
+say "scripts/test-security.mjs signs in as two students to check they can't see each other's data."
+open_url "https://supabase.com/dashboard/project/$REF/auth/users"
+for who in A B; do
+  step "Student $who: 'Add user' → 'Create new user', an email you control, a strong password,"
+  step "'Auto Confirm User' ticked, then 'Create user'."
+  email_key="SUPABASE_TEST_STUDENT_${who}_EMAIL"; password_key="SUPABASE_TEST_STUDENT_${who}_PASSWORD"
+  ask "$email_key" "Student $who email:"
+  ask_secret "$password_key" "Student $who password (hidden):"
+  write_env "$email_key" "${!email_key}"
+  write_env "$password_key" "${!password_key}"
+done
+note "Gmail tip: you+studenta@gmail.com and you+studentb@gmail.com both arrive in your inbox."
 pause "Press Enter to run the checks"
 
-# ── 7 ─────────────────────────────────────────────────────────────────────
+# ── 9 ─────────────────────────────────────────────────────────────────────
 stage "Check everything works"
 URL="https://$REF.supabase.co"; KEY="$SUPABASE_TEST_PUBLISHABLE_KEY"
+# Retry dropped connections and failed DNS lookups, so a shaky network doesn't look like a broken setup.
+curl() { command curl --retry 6 --retry-all-errors --retry-delay 3 "$@"; }
 json() { node -e 'const [k1,v1,k2,v2]=process.argv.slice(1);console.log(JSON.stringify({[k1]:v1,[k2]:v2}))' "$@"; }
 check() { # check "label" ok|bad "fix hint"
   if [[ "$2" == ok ]]; then printf '  %s✓%s %s\n' "$GREEN" "$RESET" "$1"
@@ -339,22 +391,39 @@ code=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$URL/rest/v1/messages" \
 check "Public key can save a message (got $code)" "$r" "Redo stage 3; the table or its insert rule is missing."
 
 body=$(curl -s "$URL/rest/v1/messages?select=*&limit=1" -H "apikey: $KEY")
-[[ "$body" != *'"message"'* ]] && r=ok || r=bad
+[[ -n "$body" && "$body" != *'"message":"wizard check'* ]] && r=ok || r=bad
 check "Public key can't read messages back" "$r" "The test table lets anyone read messages; compare its policies with the live project."
 
-code=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$URL/auth/v1/token?grant_type=password" \
-  -H "apikey: $KEY" -H "Content-Type: application/json" \
-  -d "$(json email "$SUPABASE_TEST_ADMIN_EMAIL" password "$SUPABASE_TEST_ADMIN_PASSWORD")")
+code=$(curl -s -o /dev/null -w '%{http_code}' "$URL/rest/v1/courses?select=id&limit=1" -H "apikey: $KEY")
 [[ "$code" == 200 ]] && r=ok || r=bad
-check "Admin can sign in (got $code)" "$r" "Redo stage 6; check the email, the password and 'Auto Confirm User'."
+check "The SPEC-2 tables exist (got $code)" "$r" "Redo stage 4."
 
-probe="wizard-check-$RANDOM$RANDOM@example.com"
-code=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$URL/auth/v1/signup" \
-  -H "apikey: $KEY" -H "Content-Type: application/json" \
-  -d "$(json email "$probe" password "Wz-$RANDOM$RANDOM-check")")
-[[ "$code" != 200 ]] && r=ok || r=bad
-check "New sign-ups are refused (got $code)" "$r" "Redo stage 5, then delete the user $probe in Authentication → Users."
+settings=$(curl -s "$URL/auth/v1/settings" -H "apikey: $KEY")
+[[ "$settings" == *'"disable_signup":false'* ]] && r=ok || r=bad
+check "Students can sign themselves up" "$r" "Redo stage 6."
 
+# sign_in EMAIL PASSWORD prints the access token, or nothing if the sign-in failed.
+sign_in() {
+  curl -s -X POST "$URL/auth/v1/token?grant_type=password" -H "apikey: $KEY" -H "Content-Type: application/json" \
+    -d "$(json email "$1" password "$2")" |
+    node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{process.stdout.write(JSON.parse(s).access_token??"")}catch{}})'
+}
+
+token=$(sign_in "$SUPABASE_TEST_ADMIN_EMAIL" "$SUPABASE_TEST_ADMIN_PASSWORD")
+[[ -n "$token" ]] && r=ok || r=bad
+check "Admin can sign in" "$r" "Redo stage 7; check the email, the password and 'Auto Confirm User'."
+role=$(curl -s -X POST "$URL/rest/v1/rpc/is_admin" -H "apikey: $KEY" -H "Authorization: Bearer $token" \
+  -H "Content-Type: application/json" -d '{}')
+[[ "$role" == true ]] && r=ok || r=bad
+check "That user is the Admin" "$r" "Run the SQL from stage 7 again, with the same email."
+
+for who in A B; do
+  email_key="SUPABASE_TEST_STUDENT_${who}_EMAIL"; password_key="SUPABASE_TEST_STUDENT_${who}_PASSWORD"
+  [[ -n "$(sign_in "${!email_key}" "${!password_key}")" ]] && r=ok || r=bad
+  check "Student $who can sign in" "$r" "Redo stage 8; check the email, the password and 'Auto Confirm User'."
+done
+
+note "Last, run the full security test: node scripts/test-security.mjs"
 pause "Press Enter to finish"
 
 finish
