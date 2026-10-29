@@ -84,7 +84,6 @@
 
     .home-link {
       display: inline-block;
-      direction: ltr;
       color: var(--beige-dark);
       font-weight: 700;
       text-decoration: none;
@@ -324,7 +323,7 @@
 
   <header class="hero">
     <div class="container">
-      <a class="home-link" href="index.html" translate="no">Deutsch mit Asmaa</a>
+      <a class="home-link" href="index.html"><span aria-hidden="true">→</span> الصفحة الرئيسية · <bdi translate="no">Deutsch mit Asmaa</bdi></a>
       <h1>اختبر مستواك في الألماني</h1>
       <p>10 أسئلة سريعة تعرّفكم تبدأوا منين: <bdi>A1</bdi> ولا <bdi>A2</bdi>؟</p>
     </div>
@@ -345,7 +344,7 @@
       </div>
 
       <div id="result-view" class="result" hidden tabindex="-1">
-        <div class="score"><span id="final-score"></span><small> / 10</small></div>
+        <div class="score"><span id="final-score"></span><small id="final-total"> / 10</small></div>
         <h2 id="result-title"></h2>
         <p id="result-text"></p>
         <a class="wa-btn" id="result-wa" href="https://wa.me/201212234806" target="_blank" rel="noopener">
@@ -371,75 +370,76 @@
   </a>
 
   <script>
-    // Quiz content: drafted by Claude, must be approved by Frau Asmaa before publishing.
+    // Quiz content: approved by Frau Asmaa and published on 2026-10-29 (see info.md).
+    // Any new or changed question needs her approval again before publishing.
     // In "text", German goes inside [[...]] so it is shown left-to-right in red.
     const QUESTIONS = [
       {
         text: "يعني إيه [[Guten Morgen]]؟",
-        lang: "ar",
+        optionsLang: "ar",
         options: ["مساء الخير", "صباح الخير", "مع السلامة", "تصبحوا على خير"],
         answer: 1,
         explain: "Morgen = الصبح، فـ Guten Morgen = صباح الخير.",
       },
       {
         text: "كمّلوا الجملة: [[Ich ___ Mona.]]",
-        lang: "de",
+        optionsLang: "de",
         options: ["heißt", "heißen", "heiße", "heiß"],
         answer: 2,
         explain: "مع ich الفعل بياخد ‎-e في الآخر: Ich heiße Mona.",
       },
       {
         text: "حد سألكم [[Wie alt bist du?]] تردّوا بإيه؟",
-        lang: "de",
+        optionsLang: "de",
         options: ["Ich komme aus Ägypten.", "Ich bin 14 Jahre alt.", "Ich heiße Ali.", "Mir geht's gut."],
         answer: 1,
         explain: "Wie alt bist du? = عندك كام سنة؟ والرد: Ich bin 14 Jahre alt.",
       },
       {
         text: "اختاروا أداة التعريف الصح: [[___ Buch ist neu.]]",
-        lang: "de",
+        optionsLang: "de",
         options: ["Das", "Der", "Die", "Den"],
         answer: 0,
         explain: "كلمة Buch (كتاب) محايدة، فبنقول: das Buch.",
       },
       {
         text: "كمّلوا الجملة: [[Wir ___ in Kairo.]]",
-        lang: "de",
+        optionsLang: "de",
         options: ["wohnt", "wohne", "wohnst", "wohnen"],
         answer: 3,
         explain: "مع wir الفعل بيرجع لأصله: wir wohnen.",
       },
       {
         text: "كمّلوا الجملة: [[Ich habe ___ Bruder.]]",
-        lang: "de",
+        optionsLang: "de",
         options: ["ein", "einen", "eine", "einer"],
         answer: 1,
         explain: "Bruder مذكر، وبعد haben بيبقى مفعول به (Akkusativ)، فـ ein بتبقى einen.",
       },
       {
         text: "جمع كلمة [[das Kind]] (طفل) هو:",
-        lang: "de",
+        optionsLang: "de",
         options: ["die Kinds", "die Kinde", "die Kinder", "die Kindern"],
         answer: 2,
         explain: "das Kind ← die Kinder.",
       },
       {
         text: "اختاروا كلمة السؤال الصح: [[___ fährst du am Wochenende? – Nach Alexandria.]]",
-        lang: "de",
+        optionsLang: "de",
         options: ["Wohin", "Woher", "Wo", "Wann"],
         answer: 0,
         explain: "الرد Nach Alexandria (لإسكندرية)، يعني السؤال عن المكان اللي رايحين له: Wohin.",
       },
       {
         text: "كمّلوا الجملة: [[Gestern ___ ich ins Kino gegangen.]]",
-        lang: "de",
+        optionsLang: "de",
         options: ["habe", "bin", "war", "hat"],
         answer: 1,
         explain: "gehen في الماضي التام (Perfekt) بييجي مع sein: ich bin gegangen.",
       },
       {
         text: "كمّلوا الجملة: [[Ich komme nicht, ___ ich krank bin.]]",
-        lang: "de",
+        optionsLang: "de",
         options: ["denn", "aber", "weil", "und"],
         answer: 2,
         explain: "بعد weil الفعل بيروح آخر الجملة: weil ich krank bin.",
@@ -511,7 +511,7 @@
         btn.type = "button";
         btn.className = "option";
         btn.textContent = option;
-        if (q.lang === "de") btn.lang = "de";
+        if (q.optionsLang === "de") btn.lang = "de";
         btn.addEventListener("click", () => choose(i));
         li.append(btn);
         optionsEl.append(li);
@@ -550,11 +550,12 @@
     function showResult() {
       const result = resultFor(score);
       document.getElementById("final-score").textContent = score;
+      document.getElementById("final-total").textContent = " / " + QUESTIONS.length;
       document.getElementById("result-title").textContent = result.title;
       document.getElementById("result-text").textContent = result.text;
 
       const message = "أهلاً، عملت اختبار المستوى على صفحة Deutsch mit Asmaa وجبت " + score +
-        " من 10 (" + result.title + "). عايز أعرف تفاصيل كورس " + result.course + ".";
+        " من " + QUESTIONS.length + " (" + result.title + "). عايز أعرف تفاصيل كورس " + result.course + ".";
       document.getElementById("result-wa").href =
         "https://wa.me/201212234806?text=" + encodeURIComponent(message);
 

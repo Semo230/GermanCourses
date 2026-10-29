@@ -33,6 +33,9 @@
       --muted: #6e5a4a;
       /* Darker than WhatsApp's #25d366 so white text stays readable (5.4:1). */
       --whatsapp: #0f7a40;
+      --green-bg: #e7f6ec;
+      --green-text: #1e6b3a;
+      --red-bg: #fbe9e9;
       --radius: 18px;
     }
 
@@ -457,8 +460,8 @@
       font-weight: 700;
     }
 
-    .form-status.success { background: #e7f6ec; color: #1e6b3a; }
-    .form-status.error { background: #fbe9e9; color: var(--red); }
+    .form-status.success { background: var(--green-bg); color: var(--green-text); }
+    .form-status.error { background: var(--red-bg); color: var(--red); }
 
     footer {
       text-align: center;
