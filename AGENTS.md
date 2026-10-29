@@ -7,6 +7,8 @@
 - ما تعدّلش ولا تمسح رسايل حقيقية في جدول messages، وما تحطش أي secret key في الكود.
 - بعد أي تعديل على index.html أو الفورم: ابعت رسالة من الفورم على الموقع الرسمي باسم "TEST – Claude"، واتأكد إن Supabase رجّع 201 وإن الرسالة ظاهرة في Supabase dashboard ← Table Editor ← messages.
 
+- مشروع Supabase للتجارب منفصل عن الموقع الرسمي، والتيستات ما تشتغلش أبدًا على المشروع الرسمي `twvrftjwwwiliywjdtjo`. بيانات مشروع التجارب في `.env` (متسجّل في `.gitignore`، وما يتعملوش commit): `SUPABASE_TEST_PROJECT_REF`، `SUPABASE_TEST_URL`، `SUPABASE_TEST_PUBLISHABLE_KEY`، `SUPABASE_TEST_ADMIN_EMAIL`، `SUPABASE_TEST_ADMIN_PASSWORD`. لو محتاج تعمله من الأول: `bash scripts/wizard-test-supabase.sh`.
+
 ## Agent skills
 
 ### Issue tracker
