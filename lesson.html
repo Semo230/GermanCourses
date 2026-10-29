@@ -482,23 +482,57 @@
     const synth = window.speechSynthesis;
     let germanVoice = null;
 
+    // Prefer German from Germany, and a voice installed on the device over an online one.
+    function voiceScore(v) {
+      const lang = v.lang.toLowerCase().replace("_", "-");
+      if (!lang.startsWith("de")) return 0;
+      return 1 + (lang === "de-de" ? 2 : 0) + (v.localService ? 4 : 0);
+    }
+
     function findGermanVoice() {
       if (!synth || germanVoice) return;
-      germanVoice = synth.getVoices().find((v) => v.lang.toLowerCase().replace("_", "-").startsWith("de"));
+      let best = null;
+      synth.getVoices().forEach((v) => {
+        if (voiceScore(v) > (best ? voiceScore(best) : 0)) best = v;
+      });
+      germanVoice = best;
       if (germanVoice) {
         document.body.classList.remove("no-audio");
         document.getElementById("audio-note").hidden = true;
       }
     }
 
-    function speak(text) {
-      if (!germanVoice) return;
-      synth.cancel();
+    // Chrome and Edge often drop a sound started right after cancelling one that was playing,
+    // which left the letters silent after the first click. So wait a moment after cutting off a
+    // playing sound, and retry once if a sound still has not started.
+    let latest = 0;
+
+    function play(text, attempt, id) {
+      if (id !== latest) return; // a newer click took over
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.voice = germanVoice;
       utterance.lang = germanVoice.lang;
       utterance.rate = 0.8;
+      let started = false;
+      utterance.addEventListener("start", () => { started = true; });
       synth.speak(utterance);
+      if (attempt === 1) {
+        setTimeout(() => {
+          if (!started && id === latest) {
+            synth.cancel();
+            setTimeout(() => play(text, 2, id), 150);
+          }
+        }, 2500);
+      }
+    }
+
+    function speak(text) {
+      if (!germanVoice) return;
+      const id = ++latest;
+      const busy = synth.speaking || synth.pending;
+      synth.cancel(); // also resets a voice stuck from earlier (Edge on Windows)
+      if (busy) setTimeout(() => play(text, 1, id), 150);
+      else play(text, 1, id);
     }
 
     document.querySelectorAll(".say").forEach((btn) => {
