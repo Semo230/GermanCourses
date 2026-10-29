@@ -1,3 +1,7 @@
+---
+status: superseded by ADR-0006
+---
+
 # Booking emails are sent by Supabase, contact messages still by Web3Forms
 
 The admin must hear about every new booking order, so its email is sent server-side: a Supabase Edge Function runs when an order row is inserted and emails Frau Asmaa through an email service (e.g. Resend). The contact form keeps sending its email from the visitor's browser through Web3Forms, so the site has two email paths on purpose.
