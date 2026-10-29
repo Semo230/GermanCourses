@@ -85,7 +85,6 @@
 
     .home-link {
       display: inline-block;
-      direction: ltr;
       color: var(--beige-dark);
       font-weight: 700;
       text-decoration: none;
@@ -366,7 +365,7 @@
 
   <header class="hero">
     <div class="container">
-      <a class="home-link" href="index.html" translate="no">Deutsch mit Asmaa</a>
+      <a class="home-link" href="index.html"><span aria-hidden="true">→</span> الصفحة الرئيسية · <bdi translate="no">Deutsch mit Asmaa</bdi></a>
       <h1>درس مجاني: الحروف والنطق</h1>
       <p>اتعلّموا تنطقوا الحروف الألمانية صح، واسمعوا كل حرف وكلمة بنفسكم.</p>
     </div>
@@ -477,16 +476,18 @@
   </a>
 
   <script>
-    // Lesson content: drafted by Claude, must be approved by Frau Asmaa before publishing.
+    // Lesson content: approved by Frau Asmaa and published on 2026-10-29 (see info.md).
+    // Any new or changed lesson text needs her approval again before publishing.
     // Pronunciation uses the browser's built-in German voice (Web Speech API) - no audio files.
     const synth = window.speechSynthesis;
     let germanVoice = null;
 
-    // Prefer German from Germany, and a voice installed on the device over an online one.
+    // Prefer German from Germany over Austrian or Swiss, then a voice installed on the device
+    // over an online one. Any German voice is still better than none.
     function voiceScore(v) {
       const lang = v.lang.toLowerCase().replace("_", "-");
       if (!lang.startsWith("de")) return 0;
-      return 1 + (lang === "de-de" ? 2 : 0) + (v.localService ? 4 : 0);
+      return 1 + (lang === "de-de" ? 4 : 0) + (v.localService ? 2 : 0);
     }
 
     function findGermanVoice() {
@@ -505,10 +506,12 @@
     // Chrome and Edge often drop a sound started right after cancelling one that was playing,
     // which left the letters silent after the first click. So wait a moment after cutting off a
     // playing sound, and retry once if a sound still has not started.
-    let latest = 0;
+    const AFTER_CANCEL_MS = 150;  // pause between cutting off a sound and starting the next
+    const RETRY_AFTER_MS = 2500;  // how long a sound may take to start before one retry
+    let latestRequestId = 0;
 
-    function play(text, attempt, id) {
-      if (id !== latest) return; // a newer click took over
+    function play(text, requestId, isRetry) {
+      if (requestId !== latestRequestId) return; // a newer click took over
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.voice = germanVoice;
       utterance.lang = germanVoice.lang;
@@ -516,23 +519,22 @@
       let started = false;
       utterance.addEventListener("start", () => { started = true; });
       synth.speak(utterance);
-      if (attempt === 1) {
-        setTimeout(() => {
-          if (!started && id === latest) {
-            synth.cancel();
-            setTimeout(() => play(text, 2, id), 150);
-          }
-        }, 2500);
-      }
+      if (isRetry) return;
+      setTimeout(() => {
+        // Some browsers play without firing "start"; if anything is speaking, don't play it twice.
+        if (started || synth.speaking || requestId !== latestRequestId) return;
+        synth.cancel();
+        setTimeout(() => play(text, requestId, true), AFTER_CANCEL_MS);
+      }, RETRY_AFTER_MS);
     }
 
     function speak(text) {
       if (!germanVoice) return;
-      const id = ++latest;
+      const requestId = ++latestRequestId;
       const busy = synth.speaking || synth.pending;
       synth.cancel(); // also resets a voice stuck from earlier (Edge on Windows)
-      if (busy) setTimeout(() => play(text, 1, id), 150);
-      else play(text, 1, id);
+      if (busy) setTimeout(() => play(text, requestId, false), AFTER_CANCEL_MS);
+      else play(text, requestId, false);
     }
 
     document.querySelectorAll(".say").forEach((btn) => {
